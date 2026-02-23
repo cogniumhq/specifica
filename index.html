@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specifica — A specification format for software projects</title>
+<meta name="description" content="An opinionated markdown format for writing software specifications. One directory, three file types, zero config.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='36' height='36' rx='8' fill='%231a7a56'/%3E%3Cpath d='M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z' stroke='white' stroke-width='1.5' fill='none'/%3E%3Cpath d='M20 8v5h5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M14 20l3 3 5-6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --bg-subtle: #f3f3f1;
+    --bg-elevated: #ffffff;
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-tertiary: #a1a1aa;
+    --text-inverse: #ffffff;
+    --green: #1a7a56;
+    --green-hover: #15694a;
+    --green-subtle: #e8f5ee;
+    --green-ghost: rgba(26, 122, 86, 0.08);
+    --amber: #d97706;
+    --amber-subtle: #fffbeb;
+    --border: #e4e4e7;
+    --border-hover: #d4d4d8;
+    --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+    --radius: 8px;
+    --radius-sm: 5px;
+    --font: 'Sora', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --speed: 200ms;
+    --dark: #111113;
+    --dark-elevated: #1a1a1e;
+    --dark-border: #27272a;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--green-subtle); color: var(--green); }
+
+  /* ============================================
+     NAV
+     ============================================ */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 56px; display: flex; align-items: center; padding: 0 40px;
+    background: rgba(250,250,249,0.85); backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--border); }
+  .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-primary); }
+  .nav-logo span { font-size: 14px; font-weight: 700; letter-spacing: -0.3px; }
+  .nav-right { margin-left: auto; display: flex; align-items: center; gap: 28px; }
+  .nav-right a { font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color var(--speed) var(--ease); }
+  .nav-right a:hover { color: var(--text-primary); }
+  .nav-cta {
+    font-family: var(--font); font-size: 12px; font-weight: 600;
+    padding: 7px 16px; background: var(--green); color: var(--text-inverse) !important;
+    border-radius: var(--radius-sm); text-decoration: none !important;
+    display: inline-flex; align-items: center; gap: 5px;
+    transition: all var(--speed) var(--ease);
+  }
+  .nav-cta:hover { background: var(--green-hover); transform: translateY(-1px); }
+
+  /* ============================================
+     SHARED
+     ============================================ */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 40px; }
+  .section-kicker {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--green); margin-bottom: 12px;
+  }
+  code {
+    font-family: var(--mono); font-size: 0.87em; font-weight: 500;
+    background: var(--bg-subtle); padding: 2px 7px; border-radius: 4px;
+  }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ============================================
+     HERO
+     ============================================ */
+  .hero {
+    padding: 160px 40px 100px;
+    max-width: 1080px; margin: 0 auto;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700; letter-spacing: -2px; line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 17px; color: var(--text-secondary); line-height: 1.7;
+    max-width: 440px; margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 13px; color: var(--text-tertiary);
+  }
+  .hero-meta-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+  .hero-meta span { font-family: var(--mono); font-weight: 500; }
+
+  /* Hero tree visual */
+  .hero-tree {
+    background: var(--dark); border-radius: 14px; padding: 36px 32px;
+    font-family: var(--mono); font-size: 14px; line-height: 2;
+    box-shadow: var(--shadow-lg);
+    position: relative; overflow: hidden;
+  }
+  .hero-tree::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(74,222,128,0.3), transparent);
+  }
+  .ht-dir { color: #f4f4f5; font-weight: 500; }
+  .ht-conn { color: #3f3f46; }
+  .ht-file { color: #71717a; }
+  .ht-feature { color: #4ade80; }
+  .ht-note { color: #3f3f46; font-size: 12px; }
+
+  /* ============================================
+     WHAT IS IT — statement band
+     ============================================ */
+  .statement {
+    padding: 100px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .statement-text {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 600; letter-spacing: -0.8px; line-height: 1.5;
+    max-width: 720px; color: var(--text-primary);
+  }
+  .statement-text em {
+    font-style: normal; color: var(--green); font-weight: 700;
+  }
+
+  /* ============================================
+     THREE FILES — the core concept
+     ============================================ */
+  .three-files { padding: 120px 0; }
+  .three-files-header { margin-bottom: 56px; max-width: 480px; }
+  .three-files-header h2 {
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 12px;
+  }
+  .three-files-header p { font-size: 16px; color: var(--text-secondary); line-height: 1.7; }
+
+  .file-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+  .file-card {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    overflow: hidden; transition: all 0.3s var(--ease);
+  }
+  .file-card:first-child { border-radius: 12px 0 0 12px; }
+  .file-card:last-child { border-radius: 0 12px 12px 0; }
+  .file-card:hover { border-color: var(--green); z-index: 1; box-shadow: var(--shadow-md); }
+
+  .file-card-head {
+    padding: 28px 28px 0;
+  }
+  .file-card-filename {
+    font-family: var(--mono); font-size: 14px; font-weight: 500;
+    color: var(--green); background: var(--green-subtle);
+    display: inline-block; padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 16px;
+  }
+  .file-card h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .file-card-question { font-size: 14px; color: var(--text-tertiary); font-style: italic; margin-bottom: 12px; }
+  .file-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; padding: 0 28px 0 0; }
+  .file-card-audience {
+    font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-tertiary); margin-top: 16px;
+  }
+
+  .file-card-preview {
+    margin-top: 24px; padding: 20px 24px;
+    background: var(--dark); font-family: var(--mono); font-size: 12px;
+    line-height: 1.8; color: #71717a; overflow: hidden; min-height: 180px;
+  }
+  .fp-heading { color: #4ade80; font-weight: 500; }
+  .fp-text { color: #a1a1aa; }
+  .fp-check { color: #525252; }
+  .fp-bold { color: #d4d4d8; font-weight: 500; }
+  .fp-key { color: #93c5fd; }
+
+  /* ============================================
+     STRUCTURE — full visual tree
+     ============================================ */
+  .structure-section {
+    padding: 120px 0; background: var(--dark); color: var(--text-inverse);
+  }
+  .structure-section .section-kicker { color: rgba(74,222,128,0.7); }
+  .structure-section h2 {
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 12px; color: #f4f4f5;
+  }
+  .structure-section > .wrap > p {
+    font-size: 16px; color: #a1a1aa; line-height: 1.7; max-width: 480px; margin-bottom: 56px;
+  }
+
+  .tree-visual {
+    display: grid; grid-template-columns: 360px 1fr; gap: 48px; align-items: start;
+  }
+
+  .tree-diagram {
+    background: var(--dark-elevated); border: 1px solid var(--dark-border);
+    border-radius: 12px; padding: 32px; font-family: var(--mono);
+    font-size: 14px; line-height: 2.1;
+  }
+
+  .tree-annotations { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+  .tree-anno {
+    background: var(--dark-elevated); border: 1px solid var(--dark-border);
+    border-radius: var(--radius); padding: 20px 24px;
+    border-left: 3px solid var(--dark-border);
+    transition: border-color 0.3s var(--ease);
+  }
+  .tree-anno:hover { border-left-color: #4ade80; }
+  .tree-anno h4 {
+    font-size: 13px; font-weight: 700; color: #f4f4f5; margin-bottom: 4px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .tree-anno h4 code { background: rgba(74,222,128,0.12); color: #4ade80; font-size: 12px; padding: 2px 8px; border-radius: 3px; }
+  .tree-anno p { font-size: 13px; color: #71717a; line-height: 1.6; }
+
+  /* ============================================
+     CONVENTIONS — the editorial section
+     ============================================ */
+  .conventions { padding: 120px 0; }
+  .conventions h2 {
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 12px;
+  }
+  .conventions > .wrap > p {
+    font-size: 16px; color: var(--text-secondary); line-height: 1.7; max-width: 480px; margin-bottom: 56px;
+  }
+
+  .conv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  .conv-card {
+    background: var(--bg-elevated); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px; transition: all 0.3s var(--ease);
+  }
+  .conv-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow); }
+  .conv-card h3 { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 12px; }
+  .conv-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+
+  .conv-example {
+    background: var(--dark); border-radius: var(--radius); padding: 16px 20px;
+    font-family: var(--mono); font-size: 12px; line-height: 1.9; color: #a1a1aa;
+    overflow-x: auto;
+  }
+  .conv-example .g { color: #4ade80; }
+  .conv-example .r { color: #ef4444; opacity: 0.6; text-decoration: line-through; }
+  .conv-example .d { color: #525252; }
+  .conv-example .w { color: #f4f4f5; font-weight: 500; }
+  .conv-example .c { color: #525252; }
+
+  .conv-card-wide { grid-column: 1 / -1; }
+
+  /* ============================================
+     PRINCIPLES
+     ============================================ */
+  .principles-section {
+    padding: 120px 0;
+    background: var(--bg-subtle);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .principles-section h2 {
+    font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+    letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 56px;
+  }
+
+  .principles-list { display: flex; flex-direction: column; gap: 0; }
+  .principle-row {
+    display: grid; grid-template-columns: 56px 200px 1fr;
+    gap: 24px; align-items: baseline;
+    padding: 24px 0; border-bottom: 1px solid var(--border);
+  }
+  .principle-row:last-child { border-bottom: none; }
+  .principle-num {
+    font-family: var(--mono); font-size: 32px; font-weight: 500;
+    color: var(--green); opacity: 0.25; line-height: 1;
+  }
+  .principle-name { font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .principle-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; }
+
+  /* ============================================
+     CTA
+     ============================================ */
+  .cta {
+    padding: 120px 0;
+    text-align: center;
+  }
+  .cta h2 {
+    font-size: clamp(28px, 4vw, 44px); font-weight: 700;
+    letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 16px;
+  }
+  .cta p { font-size: 16px; color: var(--text-secondary); line-height: 1.65; max-width: 440px; margin: 0 auto 36px; }
+  .cta-row { display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; }
+
+  .btn {
+    font-family: var(--font); font-size: 14px; font-weight: 600;
+    padding: 12px 24px; border-radius: var(--radius); border: none;
+    cursor: pointer; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 8px; transition: all var(--speed) var(--ease);
+  }
+  .btn-primary { background: var(--green); color: var(--text-inverse); }
+  .btn-primary:hover { background: var(--green-hover); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,122,86,0.3); }
+  .btn-secondary { background: var(--bg-elevated); color: var(--text-primary); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--border-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  .cta-terminal {
+    max-width: 520px; margin: 0 auto; text-align: left;
+    background: var(--dark); border-radius: 12px; overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .cta-terminal-bar {
+    height: 36px; display: flex; align-items: center; padding: 0 14px;
+    background: var(--dark-elevated); gap: 6px;
+  }
+  .td { width: 8px; height: 8px; border-radius: 50%; }
+  .td-r { background: #ff5f57; } .td-y { background: #febc2e; } .td-g { background: #28c840; }
+  .cta-terminal-body {
+    padding: 20px 24px; font-family: var(--mono); font-size: 13px;
+    line-height: 2; color: #71717a;
+  }
+  .cta-terminal-body .p { color: #4ade80; }
+  .cta-terminal-body .c { color: #f4f4f5; }
+  .cta-terminal-body .m { color: #525252; }
+
+  /* ============================================
+     FOOTER
+     ============================================ */
+  .footer {
+    padding: 32px 0; border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: -0.3px; color: var(--text-primary); text-decoration: none; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: var(--text-tertiary); text-decoration: none; transition: color var(--speed) var(--ease); }
+  .footer-links a:hover { color: var(--text-primary); }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 900px) {
+    .wrap { padding: 0 24px; }
+    .nav { padding: 0 24px; }
+    .hero { padding: 120px 24px 80px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .file-cards { grid-template-columns: 1fr; }
+    .file-card, .file-card:first-child, .file-card:last-child { border-radius: 12px; }
+    .tree-visual { grid-template-columns: 1fr; }
+    .conv-grid { grid-template-columns: 1fr; }
+    .principle-row { grid-template-columns: 40px 1fr; }
+    .principle-desc { grid-column: 2; }
+    .nav-right a:not(.nav-cta) { display: none; }
+    .cta-row { flex-direction: column; align-items: center; }
+    .footer-inner { flex-direction: column; gap: 16px; }
+    section, .three-files, .conventions, .cta { padding: 80px 0; }
+    .principles-section, .structure-section { padding: 80px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">
+    <svg width="22" height="22" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="#1a7a56"/><path d="M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.5" fill="none"/><path d="M20 8v5h5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 20l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>specifica</span>
+  </a>
+  <div class="nav-right">
+    <a href="#format">Format</a>
+    <a href="#structure">Structure</a>
+    <a href="#conventions">Conventions</a>
+    <a href="https://github.com/cogniumhq/specifica" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://specifica.app" class="nav-cta">
+      Open editor
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <h1>Specs belong in your repo.</h1>
+      <p class="hero-sub">Specifica is a markdown format for writing software specifications. One directory, three file types per feature, zero configuration. Use any editor — or <a href="https://specifica.app" style="color:var(--green);font-weight:600;text-decoration:none;">ours</a>.</p>
+      <div class="hero-meta">
+        <span class="hero-meta-dot"></span>
+        <span>v0.1 draft</span>
+        <span style="color:var(--border);">·</span>
+        <span>GFM compatible</span>
+        <span style="color:var(--border);">·</span>
+        <span>Tool-agnostic</span>
+      </div>
+    </div>
+    <div class="hero-tree">
+      <span class="ht-dir">.specifica/</span><br>
+      <span class="ht-conn">├── </span><span class="ht-file">principles.md</span><br>
+      <span class="ht-conn">├── </span><span class="ht-file">spec.md</span><br>
+      <span class="ht-conn">│</span><br>
+      <span class="ht-conn">├── </span><span class="ht-feature">auth/</span><br>
+      <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span> <span class="ht-note">← what</span><br>
+      <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span> <span class="ht-note">← how</span><br>
+      <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span> <span class="ht-note">← work</span><br>
+      <span class="ht-conn">│</span><br>
+      <span class="ht-conn">├── </span><span class="ht-feature">connect-repo/</span><br>
+      <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span><br>
+      <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span><br>
+      <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span><br>
+      <span class="ht-conn">│</span><br>
+      <span class="ht-conn">└── </span><span class="ht-feature">chat-refine/</span><br>
+      <span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span><br>
+      <span class="ht-conn">    ├── </span><span class="ht-file">design.md</span><br>
+      <span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span>
+    </div>
+  </div>
+</header>
+
+<!-- STATEMENT -->
+<div class="statement">
+  <div class="wrap">
+    <p class="statement-text reveal">Specifica is a <em>format</em>, not a tool. It defines where specification files live in a repository, what files every feature includes, and how those files are structured. <em>Standard markdown. Standard Git.</em> No proprietary format, no lock-in, no build step.</p>
+  </div>
+</div>
+
+<!-- THREE FILES -->
+<section class="three-files" id="format">
+  <div class="wrap">
+    <div class="three-files-header reveal">
+      <div class="section-kicker">The format</div>
+      <h2>Every feature is three files.</h2>
+      <p>Spec, design, tasks. What, how, work. Three audiences, three concerns, three files. Mixing them into one document is how specs become unreadable.</p>
+    </div>
+
+    <div class="file-cards">
+      <!-- SPEC -->
+      <div class="file-card reveal">
+        <div class="file-card-head">
+          <div class="file-card-filename">spec.md</div>
+          <h3>Specification</h3>
+          <div class="file-card-question">Answers: "What does it do?"</div>
+          <p>Requirements as checkboxes. Each one is a single, testable behavior. Edge cases at the end. Written for everyone — PM, designer, engineer.</p>
+          <div class="file-card-audience">PM · Designer · Engineer</div>
+        </div>
+        <div class="file-card-preview">
+          <span class="fp-heading"># GitHub Auth</span><br><br>
+          <span class="fp-text">Users sign in with GitHub OAuth.</span><br><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">"Sign in with GitHub" button</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">OAuth requests `repo` scope</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Redirect to `/dashboard`</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Expired token → re-auth prompt</span><br><br>
+          <span class="fp-bold">**Edge cases:**</span> <span class="fp-text">User revokes</span><br>
+          <span class="fp-text">OAuth app → re-auth prompt.</span>
+        </div>
+      </div>
+
+      <!-- DESIGN -->
+      <div class="file-card reveal">
+        <div class="file-card-head">
+          <div class="file-card-filename">design.md</div>
+          <h3>Technical Design</h3>
+          <div class="file-card-question">Answers: "How does it work?"</div>
+          <p>Architecture, data model, API contracts, and key decisions. The reasoning behind choices, not just the choices. Written for engineers.</p>
+          <div class="file-card-audience">Engineer · Tech Lead</div>
+        </div>
+        <div class="file-card-preview">
+          <span class="fp-heading"># Auth — Design</span><br><br>
+          <span class="fp-heading">## Flow</span><br>
+          <span class="fp-text">Browser → /auth/github → 302</span><br>
+          <span class="fp-text">GitHub → /callback?code=xxx</span><br>
+          <span class="fp-text">Worker → encrypt → KV → cookie</span><br><br>
+          <span class="fp-heading">## Key Decisions</span><br>
+          <span class="fp-bold">1.</span> <span class="fp-text">Token in KV, not cookie</span><br>
+          <span class="fp-bold">2.</span> <span class="fp-text">8h TTL — security vs friction</span><br>
+          <span class="fp-bold">3.</span> <span class="fp-text">`repo` scope — private access</span>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="file-card reveal">
+        <div class="file-card-head">
+          <div class="file-card-filename">tasks.md</div>
+          <h3>Implementation</h3>
+          <div class="file-card-question">Answers: "In what order?"</div>
+          <p>A flat checklist ordered by dependency. Each item is completable in a single PR. No nesting, no sub-items, no ambiguity about what's next.</p>
+          <div class="file-card-audience">Engineer (the builder)</div>
+        </div>
+        <div class="file-card-preview">
+          <span class="fp-heading"># Auth — Tasks</span><br><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Create GitHub OAuth App</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/github`</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/callback`</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Upsert user in D1</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/logout`</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Auth middleware</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">Handle expired token</span><br>
+          <span class="fp-check">- [ ]</span> <span class="fp-text">D1 migration: `users`</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURE -->
+<section class="structure-section" id="structure">
+  <div class="wrap">
+    <div class="section-kicker reveal">Directory structure</div>
+    <h2 class="reveal">Root files for the project.<br>Feature folders for each piece.</h2>
+    <p class="reveal">Root-level files describe the project as a whole. Feature folders use kebab-case names and each contain the same three files. Extra files are fine — the convention is a guide, not a gate.</p>
+
+    <div class="tree-visual">
+      <div class="tree-diagram reveal">
+        <span class="ht-dir">.specifica/</span><br>
+        <span class="ht-conn">│</span><br>
+        <span class="ht-conn">├── </span><span class="ht-file">principles.md</span><br>
+        <span class="ht-conn">├── </span><span class="ht-file">spec.md</span><br>
+        <span class="ht-conn">├── </span><span class="ht-file">architecture.md</span> <span class="ht-note">← optional</span><br>
+        <span class="ht-conn">│</span><br>
+        <span class="ht-conn">├── </span><span class="ht-feature">auth/</span><br>
+        <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span><br>
+        <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span><br>
+        <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span><br>
+        <span class="ht-conn">│</span><br>
+        <span class="ht-conn">├── </span><span class="ht-feature">connect-repo/</span><br>
+        <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span><br>
+        <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span><br>
+        <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span><br>
+        <span class="ht-conn">│</span><br>
+        <span class="ht-conn">└── </span><span class="ht-feature">chat-refine/</span><br>
+        <span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span><br>
+        <span class="ht-conn">    ├── </span><span class="ht-file">design.md</span><br>
+        <span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span>
+      </div>
+
+      <div class="tree-annotations">
+        <div class="tree-anno reveal">
+          <h4><code>principles.md</code></h4>
+          <p>3–7 numbered constraints that guide every decision. These are rules, not aspirations. Each one should rule something out.</p>
+        </div>
+        <div class="tree-anno reveal">
+          <h4><code>spec.md</code> at root</h4>
+          <p>The project-level spec. Defines scope, success criteria, time appetite, and non-goals. The one document someone reads to understand the whole project.</p>
+        </div>
+        <div class="tree-anno reveal">
+          <h4><code>feature/</code> folders</h4>
+          <p>Kebab-case names that describe the feature — <code>auth</code>, <code>connect-repo</code>, <code>commit</code>. Name the behavior, not the page or component.</p>
+        </div>
+        <div class="tree-anno reveal">
+          <h4>Status tags</h4>
+          <p>Optional. Tag any H1 heading with <code>[draft]</code>, <code>[review]</code>, or <code>[final]</code> to signal where a spec is in its lifecycle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVENTIONS -->
+<section class="conventions" id="conventions">
+  <div class="wrap">
+    <div class="section-kicker reveal">Conventions</div>
+    <h2 class="reveal">Write specs that someone else can ship.</h2>
+    <p class="reveal">Standard GitHub-Flavored Markdown. No custom syntax, no preprocessors. If GitHub renders it correctly, it's valid Specifica.</p>
+
+    <div class="conv-grid">
+      <div class="conv-card reveal">
+        <h3>Requirements are checkboxes</h3>
+        <p>Each requirement is a GFM checkbox describing a single, testable behavior. If you can't verify it, it's not specific enough.</p>
+        <div class="conv-example">
+          <span class="g">- [ ] Expired token → show "Re-authenticate" prompt</span><br>
+          <span class="g">- [ ] "Commit" button shows pending changes badge</span><br>
+          <span class="d">────</span><br>
+          <span class="r">- [ ] Good error handling</span> <span class="c">← too vague</span><br>
+          <span class="r">- [ ] Use Zustand for state</span> <span class="c">← implementation</span>
+        </div>
+      </div>
+
+      <div class="conv-card reveal">
+        <h3>Edge cases are compact</h3>
+        <p>At the end of each section: bold label, then scenario → outcome pairs separated by periods. Not stories — failure modes.</p>
+        <div class="conv-example">
+          <span class="w">**Edge cases:**</span> User revokes OAuth<br>
+          app → re-auth prompt. User has no<br>
+          repos → empty state with CTA. Token<br>
+          expires mid-edit → preserve draft.
+        </div>
+      </div>
+
+      <div class="conv-card reveal">
+        <h3>Design docs explain <em>why</em></h3>
+        <p>Key Decisions sections carry the reasoning. "Token in KV, not cookie" isn't enough — say why. Future-you needs the context.</p>
+        <div class="conv-example">
+          <span class="w">## Key Decisions</span><br><br>
+          <span class="w">1.</span> Token in KV, not cookie<br>
+          <span class="d">   — never expose token client-side</span><br>
+          <span class="w">2.</span> 8h TTL, not 24h<br>
+          <span class="d">   — balance security with re-auth friction</span>
+        </div>
+      </div>
+
+      <div class="conv-card reveal">
+        <h3>Tasks are flat and ordered</h3>
+        <p>No nesting. Ordered by dependency — top items unblock bottom items. Each task is completable in a single PR or commit.</p>
+        <div class="conv-example">
+          <span class="g">- [ ]</span> Create GitHub OAuth App<br>
+          <span class="g">- [ ]</span> Implement `/auth/github` redirect<br>
+          <span class="g">- [ ]</span> Implement `/auth/callback` exchange<br>
+          <span class="g">- [ ]</span> Auth middleware for `/api/*`<br>
+          <span class="g">- [ ]</span> Landing page with sign-in button
+        </div>
+      </div>
+
+      <div class="conv-card conv-card-wide reveal">
+        <h3>Naming at a glance</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:12px;">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Directory</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--green);">.specifica/</div>
+            <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Always at repo root</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Feature folders</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--green);">kebab-case/</div>
+            <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">auth/, connect-repo/, commit/</div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Feature files</div>
+            <div style="font-family:var(--mono);font-size:14px;color:var(--green);">spec.md · design.md · tasks.md</div>
+            <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Always these three names</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles-section">
+  <div class="wrap">
+    <div class="section-kicker reveal">Principles</div>
+    <h2 class="reveal">Five rules the format doesn't break.</h2>
+
+    <div class="principles-list">
+      <div class="principle-row reveal">
+        <div class="principle-num">01</div>
+        <div class="principle-name">Repo is the source of truth</div>
+        <div class="principle-desc">Every spec is a <code>.md</code> file in <code>.specifica/</code>. No external database, no SaaS platform, no proprietary format owns the content. Clone the repo and you have the specs.</div>
+      </div>
+      <div class="principle-row reveal">
+        <div class="principle-num">02</div>
+        <div class="principle-name">Markdown is the format</div>
+        <div class="principle-desc">Standard GitHub-Flavored Markdown. No custom syntax, no preprocessor, no build step. Readable on GitHub, in VS Code, in a terminal, on paper, in email.</div>
+      </div>
+      <div class="principle-row reveal">
+        <div class="principle-num">03</div>
+        <div class="principle-name">Three files per feature</div>
+        <div class="principle-desc">Spec (what it does), design (how it works), tasks (implementation order). Separate concerns, separate audiences. Mixing them is how specs become unreadable.</div>
+      </div>
+      <div class="principle-row reveal">
+        <div class="principle-num">04</div>
+        <div class="principle-name">Opinionated structure</div>
+        <div class="principle-desc">One directory layout. One naming convention. Constraints eliminate the decisions that don't matter — where to put files, what to call them, how to organize features.</div>
+      </div>
+      <div class="principle-row reveal">
+        <div class="principle-num">05</div>
+        <div class="principle-name">Tool-agnostic</div>
+        <div class="principle-desc">The format works with any text editor, any Git workflow, any CI pipeline. Tooling enhances Specifica — it doesn't own it. You can always fall back to <code>vim</code> and <code>git push</code>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2 class="reveal">Start with <code style="font-size:inherit;background:var(--green-subtle);color:var(--green);padding:4px 14px;">mkdir</code></h2>
+    <p class="reveal">Create the directory, add your first feature, commit. You're using Specifica. Or use the editor if you prefer a UI.</p>
+
+    <div class="cta-row reveal">
+      <a href="https://specifica.app" class="btn btn-primary">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        Open specifica.app
+      </a>
+      <a href="https://github.com/cogniumhq/specifica" class="btn btn-secondary" target="_blank" rel="noopener">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <div class="cta-terminal reveal">
+      <div class="cta-terminal-bar">
+        <div class="td td-r"></div><div class="td td-y"></div><div class="td td-g"></div>
+      </div>
+      <div class="cta-terminal-body">
+        <span class="m"># scaffold your first project</span><br>
+        <span class="p">$</span> <span class="c">mkdir -p .specifica/auth</span><br>
+        <span class="p">$</span> <span class="c">touch .specifica/principles.md</span><br>
+        <span class="p">$</span> <span class="c">touch .specifica/spec.md</span><br>
+        <span class="p">$</span> <span class="c">touch .specifica/auth/{spec,design,tasks}.md</span><br>
+        <span class="p">$</span> <span class="c">git add .specifica/ && git commit -m "docs: init specifica"</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <a href="/" class="footer-logo">
+        <svg width="18" height="18" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="8" fill="#1a7a56"/><path d="M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" stroke="white" stroke-width="1.5" fill="none"/><path d="M20 8v5h5" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 20l3 3 5-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        specifica
+      </a>
+      <div class="footer-links">
+        <a href="https://specifica.app">Editor</a>
+        <a href="https://github.com/cogniumhq/specifica" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 10));
+
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
