@@ -76,7 +76,7 @@
 
   /* THREE FILES */
   .three-files{padding:100px 0}
-  .three-files-header{margin-bottom:48px;max-width:460px}
+  .three-files-header{margin-bottom:48px;max-width:480px}
   .three-files-header h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
   .three-files-header p{font-size:15px;color:var(--text-secondary);line-height:1.7}
   .file-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
@@ -125,7 +125,7 @@
   /* CONVENTIONS */
   .conventions{padding:100px 0}
   .conventions h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
-  .conventions>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:460px;margin-bottom:48px}
+  .conventions>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:48px}
   .conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .conv-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .3s var(--ease)}
   .conv-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow)}
@@ -136,7 +136,7 @@
 
   /* PRINCIPLES */
   .principles-section{padding:100px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-  .principles-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:48px}
+  .principles-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:48px;max-width:480px}
   .principles-list{display:flex;flex-direction:column}
   .principle-row{display:grid;grid-template-columns:48px 180px 1fr;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--border)}
   .principle-row:last-child{border-bottom:none}
@@ -202,7 +202,7 @@
 <!-- HERO -->
 <header class="hero">
   <div class="hero-top">
-    <h1>Three files.<br>Any item.<br>Your repo.</h1>
+    <h1>Three files. Any item. Your repo.</h1>
     <p class="hero-sub">A structured markdown format for Git. Describe what needs to happen, how it works, and what to do next — as files in a directory. Software specs, personal plans, or team workflows.</p>
     <div class="hero-meta">
       <span class="hero-meta-dot"></span>
@@ -417,12 +417,12 @@
       <div class="conv-card reveal">
         <h3>Edge cases are compact</h3>
         <p>Scenario → outcome pairs. Failure modes, not stories.</p>
-        <div class="conv-example"><span class="w">**Edge cases:**</span> User revokes OAuth<br>app → re-auth prompt. User has no<br>repos → empty state. Token expires<br>mid-edit → preserve draft.</div>
+        <div class="conv-example"><span class="w">**Edge cases:**</span> User revokes OAuth app → re-auth prompt. User has no repos → empty state. Token expires mid-edit → preserve draft.</div>
       </div>
       <div class="conv-card reveal">
         <h3>Design docs explain <em>why</em></h3>
         <p>Key Decisions carry reasoning, not just choices.</p>
-        <div class="conv-example"><span class="w">## Key Decisions</span><br><br><span class="w">1.</span> Token in KV, not cookie<br><span class="d">   — never expose token client-side</span><br><span class="w">2.</span> Surprise party<br><span class="d">   — Sara checks her email constantly</span></div>
+        <div class="conv-example"><span class="w">## Key Decisions</span><br><br><span class="w">1.</span> Token in KV, not cookie <span class="d">— never expose token client-side</span><br><span class="w">2.</span> Surprise party <span class="d">— Sara checks her email constantly</span></div>
       </div>
     </div>
   </div>
