@@ -3,23 +3,23 @@
 ## Phase 0: Packages + Site (Days 1–3)
 
 ### `@specifica/format`
-- [ ] Create `packages/format/` with TypeScript config
-- [ ] Implement `parseTasks(tasksMd)` → `Task[]` (checkbox parsing)
-- [ ] Implement `serializeTasks(tasks)` → markdown string
-- [ ] Implement `parse(spec?, design?, tasks?)` → `Item`
-- [ ] Implement `serialize(item)` → `{ spec?, design?, tasks? }`
-- [ ] Implement `validate(files)` → `{ valid, errors, warnings }`
-- [ ] Kebab-case directory name validation
-- [ ] Optional frontmatter support in spec.md
-- [ ] Unit tests for parse/serialize roundtrip
-- [ ] Publish to npm as `@specifica/format`
+- [x] Create `packages/format/` with TypeScript config
+- [x] Implement `parseTasks(tasksMd)` → `Task[]` (checkbox parsing)
+- [x] Implement `serializeTasks(tasks)` → markdown string
+- [x] Implement `parse(spec?, design?, tasks?)` → `Item`
+- [x] Implement `serialize(item)` → `{ spec?, design?, tasks? }`
+- [x] Implement `validate(files)` → `{ valid, errors, warnings }`
+- [x] Kebab-case directory name validation
+- [x] Optional frontmatter support in spec.md
+- [x] Unit tests for parse/serialize roundtrip
+- [x] Publish to npm as `@specifica/format`
 
 ### `@specifica/store` interface
-- [ ] Define `StorageAdapter` interface (all method signatures, async)
-- [ ] Define all types (`StoredItem`, `MemoryItem`, `Message`, `GitConfig`, `UserSettings`, `BoardState`)
-- [ ] Ensure no infrastructure leakage (no Cloudflare, no SQLite in interface)
-- [ ] Publish to npm as `@specifica/store`
-- [ ] Align interface with Bombastic team
+- [x] Define `StorageAdapter` interface (all method signatures, async)
+- [x] Define all types (`StoredItem`, `MemoryItem`, `Message`, `GitConfig`, `UserSettings`, `BoardState`)
+- [x] Ensure no infrastructure leakage (no Cloudflare, no SQLite in interface)
+- [x] Publish to npm as `@specifica/store`
+- [x] Align interface with Bombastic team
 
 ### specifica.org
 - [ ] Deploy specifica.org to Cloudflare Pages (`specifica.pages.dev`)
