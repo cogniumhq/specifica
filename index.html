@@ -24,6 +24,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='36' height='36' rx='8' fill='%231a7a56'/%3E%3Cpath d='M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z' stroke='white' stroke-width='1.5' fill='none'/%3E%3Cpath d='M20 8v5h5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M14 20l3 3 5-6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='36' height='36' rx='8' fill='%231a7a56'/%3E%3Cpath d='M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z' stroke='white' stroke-width='1.5' fill='none'/%3E%3Cpath d='M20 8v5h5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M14 20l3 3 5-6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKRJFN1WJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YKRJFN1WJF');
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -151,8 +160,6 @@
   .nav-right{margin-left:auto;display:flex;align-items:center;gap:28px}
   .nav-right a{font-size:13px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:color var(--speed) var(--ease)}
   .nav-right a:hover{color:var(--text-primary)}
-  .nav-cta{font-family:var(--font);font-size:12px;font-weight:600;padding:7px 16px;background:var(--green);color:var(--text-inverse)!important;border-radius:var(--radius-sm);text-decoration:none!important;display:inline-flex;align-items:center;gap:5px;transition:all var(--speed) var(--ease)}
-  .nav-cta:hover{background:var(--green-hover);transform:translateY(-1px)}
 
   /* SHARED */
   .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
@@ -178,6 +185,20 @@
   .hero-tree-label{font-family:var(--font);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#a1a1aa;margin-bottom:14px;display:block}
   .hero-tree pre{font-family:var(--mono);font-size:13px;line-height:2;margin:0;white-space:pre}
   .ht-dir{color:#f4f4f5;font-weight:500}.ht-conn{color:#71717a}.ht-file{color:#d4d4d8}.ht-feature{color:#4ade80}.ht-note{color:#b4b4bc;font-size:11px}
+
+  /* WHY SPECIFICA */
+  .why-section{padding:64px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .why-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:12px}
+  .why-section>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:36px}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .why-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .3s var(--ease)}
+  .why-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow)}
+  .why-card h3{font-size:16px;font-weight:700;letter-spacing:-0.3px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .why-card h3 .icon{font-size:20px}
+  .why-card p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px}
+  .why-card ul{margin:0;padding-left:20px;font-size:13px;color:var(--text-secondary);line-height:1.8}
+  .why-card ul li{margin-bottom:6px}
+  .why-card code{font-size:0.9em}
 
   /* THREE FILES */
   .three-files{padding:64px 0}
@@ -299,6 +320,7 @@
     .wrap{padding:0 24px}.nav{padding:0 20px}.hero{padding:100px 24px 60px}
     .hero-trees{grid-template-columns:1fr}
     .hero-tree pre{font-size:12px}
+    .why-grid{grid-template-columns:1fr}
     .file-cards{grid-template-columns:1fr}.file-card,.file-card:first-child,.file-card:last-child{border-radius:12px}
     .usecase-grid{grid-template-columns:1fr}
     .tree-visual{grid-template-columns:1fr}
@@ -306,10 +328,9 @@
     .conv-grid{grid-template-columns:1fr}
     .pkg-grid{grid-template-columns:1fr}
     .principle-row{grid-template-columns:36px 1fr}.principle-desc{grid-column:2}
-    .nav-right a:not(.nav-cta){display:none}
     .cta-row{flex-direction:column;align-items:center}
     .footer-inner{flex-direction:column;gap:16px}
-    section,.three-files,.conventions,.cta,.principles-section,.usecases,.structure-section,.packages-section{padding:48px 0}
+    section,.three-files,.conventions,.cta,.principles-section,.usecases,.structure-section,.packages-section,.why-section{padding:48px 0}
   }
   @media(max-width:480px){
     .hero-tree{padding:20px}
@@ -333,14 +354,13 @@
     <a href="#structure">Structure</a>
     <a href="#packages">Packages</a>
     <a href="https://github.com/cogniumhq/specifica" target="_blank" rel="noopener" aria-label="GitHub repository (opens in new window)">GitHub</a>
-    <a href="https://specifica.app" class="nav-cta">Open editor <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
   </div>
 </nav>
 
 <header class="hero">
   <div class="hero-top">
     <h1>A markdown format that makes AI collaboration natural</h1>
-    <p class="hero-sub">Three files per item in your repo. Describe what needs to happen, how it works, and what to do next — as files in a directory. Software specs, personal plans, or team workflows.</p>
+    <p class="hero-sub">Three files per item in your repo. Describe what needs to happen, how it works, and what to do next — as files in a directory. Software specs, API designs, technical migrations, or team workflows.</p>
     <div class="hero-meta">
       <span class="hero-meta-dot"></span>
       <span>v1.0-rc</span>
@@ -355,9 +375,9 @@
 
   <div class="hero-trees">
     <div class="hero-tree">
-      <span class="hero-tree-label">Software development</span>
+      <span class="hero-tree-label">Example: Web application</span>
       <pre><span class="ht-dir">.specifica/</span>
-<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>
+<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>  <span class="ht-note">← project values, constraints</span>
 <span class="ht-conn">│</span>
 <span class="ht-conn">├── </span><span class="ht-feature">auth/</span>
 <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>    <span class="ht-note">← requirements, edge cases</span>
@@ -369,29 +389,80 @@
 <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>
 <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>
 <span class="ht-conn">│</span>
-<span class="ht-conn">└── </span><span class="ht-feature">commit-flow/</span>
+<span class="ht-conn">└── </span><span class="ht-feature">api-versioning/</span>
 <span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span>
-<span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span></pre>
+<span class="ht-conn">    └── </span><span class="ht-file">design.md</span></pre>
     </div>
     <div class="hero-tree">
-      <span class="hero-tree-label">Personal planning</span>
-      <pre><span class="ht-dir">.clove/</span>
-<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>  <span class="ht-note">← preferences, context</span>
+      <span class="hero-tree-label">Example: Open source project</span>
+      <pre><span class="ht-dir">.specifica/</span>
+<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>  <span class="ht-note">← contribution guidelines</span>
 <span class="ht-conn">│</span>
-<span class="ht-conn">├── </span><span class="ht-feature">plan-saras-birthday/</span>
-<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>    <span class="ht-note">← 12 people, surprise, budget</span>
-<span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>  <span class="ht-note">← Rosewood, don't invite Mike</span>
-<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← venue, guests, invitations</span>
+<span class="ht-conn">├── </span><span class="ht-feature">plugin-system/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>    <span class="ht-note">← plugin API requirements</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>  <span class="ht-note">← hooks, lifecycle, events</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← implementation checklist</span>
 <span class="ht-conn">│</span>
-<span class="ht-conn">├── </span><span class="ht-feature">weekly-groceries/</span>
-<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← just a list</span>
+<span class="ht-conn">├── </span><span class="ht-feature">typescript-migration/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← file-by-file progress</span>
 <span class="ht-conn">│</span>
-<span class="ht-conn">└── </span><span class="ht-feature">morning-routine/</span>
+<span class="ht-conn">└── </span><span class="ht-feature">v2-breaking-changes/</span>
 <span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span>
-<span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span></pre>
+<span class="ht-conn">    └── </span><span class="ht-file">design.md</span></pre>
     </div>
   </div>
 </header>
+
+<section class="why-section">
+  <div class="wrap">
+    <div class="section-kicker reveal">Why Specifica?</div>
+    <h2 class="reveal">Human-readable. AI-native.</h2>
+    <p class="reveal">Software specs are scattered across docs, tickets, wikis, and Slack threads. Hard for humans to navigate. Impossible for AI to parse. Specifica gives both a structured home.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <h3><span class="icon">👤</span> Built for humans</h3>
+        <p>Plain markdown files in your Git repo. No proprietary formats, no build tools, no lock-in.</p>
+        <ul>
+          <li>Write specs in any editor</li>
+          <li>Version-controlled with your code</li>
+          <li>Readable in GitHub, VS Code, or terminal</li>
+          <li>Merge conflicts resolve like code</li>
+        </ul>
+      </div>
+      <div class="why-card reveal">
+        <h3><span class="icon">🤖</span> Optimized for AI</h3>
+        <p>Consistent structure makes perfect context for LLMs. Machine-readable state enables automation.</p>
+        <ul>
+          <li>AI reads <code>spec.md</code> for requirements context</li>
+          <li>AI references <code>design.md</code> for architectural decisions</li>
+          <li>AI updates <code>tasks.md</code> checkboxes programmatically</li>
+          <li>Tools parse, validate, and sync automatically</li>
+        </ul>
+      </div>
+      <div class="why-card reveal">
+        <h3><span class="icon">🎯</span> Enforces clarity</h3>
+        <p>Three files, three concerns. Constraints eliminate ambiguity and force intentional thinking.</p>
+        <ul>
+          <li>Requirements separate from implementation</li>
+          <li>Decisions documented with reasoning</li>
+          <li>Tasks ordered by dependency</li>
+          <li>No mixing of "what" and "how"</li>
+        </ul>
+      </div>
+      <div class="why-card reveal">
+        <h3><span class="icon">🔗</span> Enables tooling</h3>
+        <p>Standard format unlocks a tooling ecosystem. Parsers, validators, editors, CI checks, sync tools.</p>
+        <ul>
+          <li>npm packages for parsing and serialization</li>
+          <li>Storage adapters for any backend</li>
+          <li>CLI tools for validation and migration</li>
+          <li>Web editors with AI assistance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="three-files" id="format">
   <div class="wrap">
@@ -465,7 +536,7 @@
   <div class="wrap">
     <div class="section-kicker reveal">Use cases</div>
     <h2 class="reveal">Same structure, different domains.</h2>
-    <p class="reveal">All three files are optional. A complex feature uses all three. A weekly standup prep uses two. A grocery run is one file.</p>
+    <p class="reveal">All three files are optional. A complex feature uses all three. A technical migration uses two. A simple bug fix uses one.</p>
     <div class="usecase-grid">
       <div class="usecase-card reveal">
         <div class="usecase-card-head">
@@ -481,26 +552,27 @@
       </div>
       <div class="usecase-card reveal">
         <div class="usecase-card-head">
-          <div class="usecase-card-type">Work at office</div>
-          <h3>Team process</h3>
-          <div class="usecase-card-desc">A repeating workflow with context and a checklist. Onboarding, standup prep, release process.</div>
-          <div class="usecase-card-files"><span class="usecase-file-tag">spec.md</span><span class="usecase-file-tag dim">design.md</span><span class="usecase-file-tag">tasks.md</span></div>
+          <div class="usecase-card-type">API Design</div>
+          <h3>API specification</h3>
+          <div class="usecase-card-desc">Design a new API endpoint with requirements, data models, and implementation steps.</div>
+          <div class="usecase-card-files"><span class="usecase-file-tag">spec.md</span><span class="usecase-file-tag">design.md</span><span class="usecase-file-tag">tasks.md</span></div>
         </div>
-        <div class="usecase-card-tree"><pre><span class="uct-dir">new-hire-onboarding/</span>
-<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← goals, timeline, who's involved</span>
-<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← accounts, access, meetings…</span></pre></div>
+        <div class="usecase-card-tree"><pre><span class="uct-dir">user-search-api/</span>
+<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← endpoints, params, responses</span>
+<span class="uct-conn">├── </span><span class="uct-file">design.md</span>  <span class="uct-dim">← indexing, pagination, filters</span>
+<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← DB schema, handlers, tests</span></pre></div>
       </div>
       <div class="usecase-card reveal">
         <div class="usecase-card-head">
-          <div class="usecase-card-type">Personal</div>
-          <h3>Life planning</h3>
-          <div class="usecase-card-desc">A project with intent, key decisions, and steps. Or just a checklist — your call.</div>
+          <div class="usecase-card-type">Refactoring</div>
+          <h3>Technical migration</h3>
+          <div class="usecase-card-desc">Plan and track large-scale changes like migrations, rewrites, or architectural shifts.</div>
           <div class="usecase-card-files"><span class="usecase-file-tag">spec.md</span><span class="usecase-file-tag">design.md</span><span class="usecase-file-tag">tasks.md</span></div>
         </div>
-        <div class="usecase-card-tree"><pre><span class="uct-dir">plan-saras-birthday/</span>
-<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← 12 people, surprise, budget</span>
-<span class="uct-conn">├── </span><span class="uct-file">design.md</span>  <span class="uct-dim">← Rosewood, don't invite Mike</span>
-<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← venue, guests, cake</span></pre></div>
+        <div class="usecase-card-tree"><pre><span class="uct-dir">migrate-to-typescript/</span>
+<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← scope, goals, success criteria</span>
+<span class="uct-conn">├── </span><span class="uct-file">design.md</span>  <span class="uct-dim">← migration strategy, phases</span>
+<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← file-by-file conversion list</span></pre></div>
       </div>
     </div>
   </div>
@@ -632,10 +704,10 @@ mid-edit → preserve draft.</pre></div>
 <section class="cta">
   <div class="wrap">
     <h2 class="reveal">Start with <code>mkdir</code></h2>
-    <p class="reveal">Create the directory, add your first item, commit. Or use the editor for a web UI.</p>
+    <p class="reveal">Create the directory, add your first item, commit. Three commands to get started.</p>
     <div class="cta-row reveal">
-      <a href="https://specifica.app" class="btn btn-primary"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>Open specifica.app</a>
-      <a href="https://github.com/cogniumhq/specifica" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="View repository on GitHub (opens in new window)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>View on GitHub</a>
+      <a href="https://github.com/cogniumhq/specifica" class="btn btn-primary" target="_blank" rel="noopener" aria-label="View repository on GitHub (opens in new window)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>View on GitHub</a>
+      <a href="https://www.npmjs.com/package/@specifica/format" class="btn btn-secondary" target="_blank" rel="noopener" aria-label="npm package (opens in new window)"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8v8H3V8h18zm0-2H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zM7 10h2v4H7v-4zm4 0h2v4h-2v-4zm4 0h2v4h-2v-4z"/></svg>View on npm</a>
     </div>
     <div class="cta-terminal reveal">
       <div class="cta-terminal-bar"><div class="td td-r"></div><div class="td td-y"></div><div class="td td-g"></div></div>
@@ -657,9 +729,9 @@ mid-edit → preserve draft.</pre></div>
         specifica
       </a>
       <div class="footer-links">
-        <a href="https://specifica.app">Editor</a>
         <a href="https://github.com/cogniumhq/specifica" target="_blank" rel="noopener" aria-label="GitHub repository (opens in new window)">GitHub</a>
         <a href="https://www.npmjs.com/package/@specifica/format" target="_blank" rel="noopener" aria-label="npm package (opens in new window)">npm</a>
+        <a href="https://www.npmjs.com/package/@specifica/store" target="_blank" rel="noopener" aria-label="npm package (opens in new window)">@specifica/store</a>
       </div>
     </div>
   </div>
