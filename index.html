@@ -6,7 +6,6 @@
 <title>Specifica — A structured content format for Git</title>
 <meta name="description" content="Three markdown files per item — spec, design, tasks — in a Git directory. Software specs, project plans, or team workflows. Same format.">
 <link rel="canonical" href="https://specifica.org/">
-<!-- Open Graph / Social Media -->
 <meta property="og:title" content="Specifica — A structured content format for Git">
 <meta property="og:description" content="Three markdown files per item — spec, design, tasks — in a Git directory. Software specs, project plans, or team workflows. Same format.">
 <meta property="og:type" content="website">
@@ -58,8 +57,8 @@
   .reveal.visible{opacity:1;transform:translateY(0)}
 
   /* HERO */
-  .hero{padding:140px 40px 80px;max-width:1080px;margin:0 auto}
-  .hero-top{max-width:560px;margin-bottom:48px}
+  .hero{padding:120px 40px 56px;max-width:1080px;margin:0 auto}
+  .hero-top{max-width:560px;margin-bottom:40px}
   .hero h1{font-size:clamp(36px,5vw,52px);font-weight:700;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
   .hero-sub{font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px}
   .hero-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-tertiary);flex-wrap:wrap}
@@ -67,16 +66,17 @@
   .hero-meta span{font-family:var(--mono);font-weight:500}
   .hero-meta a{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green);text-decoration:none}
 
-  /* Hero trees side by side */
+  /* Hero trees */
   .hero-trees{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .hero-tree{background:var(--dark);border-radius:12px;padding:28px 28px;font-family:var(--mono);font-size:13px;line-height:2;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .hero-tree{background:var(--dark);border-radius:12px;padding:28px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
   .hero-tree::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(74,222,128,0.3),transparent)}
-  .hero-tree-label{font-family:var(--font);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#525252;margin-bottom:14px;display:block}
-  .ht-dir{color:#f4f4f5;font-weight:500}.ht-conn{color:#3f3f46}.ht-file{color:#71717a}.ht-feature{color:#4ade80}.ht-note{color:#3f3f46;font-size:11px}.ht-opt{color:#525252;font-style:italic;font-size:11px}
+  .hero-tree-label{font-family:var(--font);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;margin-bottom:14px;display:block}
+  .hero-tree pre{font-family:var(--mono);font-size:13px;line-height:2;margin:0;white-space:pre}
+  .ht-dir{color:#f4f4f5;font-weight:500}.ht-conn{color:#3f3f46}.ht-file{color:#a1a1aa}.ht-feature{color:#4ade80}.ht-note{color:#52525b;font-size:11px}
 
   /* THREE FILES */
-  .three-files{padding:100px 0}
-  .three-files-header{margin-bottom:48px;max-width:480px}
+  .three-files{padding:64px 0}
+  .three-files-header{margin-bottom:36px;max-width:480px}
   .three-files-header h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
   .three-files-header p{font-size:15px;color:var(--text-secondary);line-height:1.7}
   .file-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
@@ -88,13 +88,14 @@
   .file-card h3{font-size:18px;font-weight:700;letter-spacing:-0.4px;margin-bottom:4px}
   .file-card-question{font-size:13px;color:var(--text-tertiary);font-style:italic;margin-bottom:10px}
   .file-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
-  .file-card-preview{margin-top:20px;padding:18px 20px;background:var(--dark);font-family:var(--mono);font-size:11px;line-height:1.85;color:#71717a;overflow:hidden;min-height:160px}
-  .fp-heading{color:#4ade80;font-weight:500}.fp-text{color:#a1a1aa}.fp-check{color:#525252}.fp-bold{color:#d4d4d8;font-weight:500}
+  .file-card-preview{margin-top:20px;padding:18px 20px;background:var(--dark);font-family:var(--mono);font-size:11px;line-height:1.85;overflow:hidden;min-height:160px}
+  .file-card-preview pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:inherit;line-height:inherit}
+  .fp-heading{color:#4ade80;font-weight:500}.fp-text{color:#b4b4bc}.fp-check{color:#636366}.fp-bold{color:#d4d4d8;font-weight:500}
 
   /* USE CASES */
-  .usecases{padding:100px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .usecases{padding:64px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
   .usecases h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
-  .usecases>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:48px}
+  .usecases>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:36px}
   .usecase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .usecase-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s var(--ease)}
   .usecase-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow)}
@@ -105,38 +106,59 @@
   .usecase-card-files{display:flex;gap:5px;margin-top:12px;flex-wrap:wrap}
   .usecase-file-tag{font-family:var(--mono);font-size:10px;font-weight:500;padding:2px 8px;border-radius:100px;background:var(--green-subtle);color:var(--green)}
   .usecase-file-tag.dim{background:var(--bg-subtle);color:var(--text-tertiary)}
-  .usecase-card-tree{padding:14px 20px;background:var(--dark);font-family:var(--mono);font-size:11px;line-height:1.85;color:#71717a}
-  .uct-dir{color:#4ade80;font-weight:500}.uct-conn{color:#3f3f46}.uct-file{color:#a1a1aa}.uct-dim{color:#525252}
+  .usecase-card-tree{padding:14px 20px;background:var(--dark);font-family:var(--mono);font-size:11px;line-height:1.85}
+  .usecase-card-tree pre{margin:0;white-space:pre;font-family:inherit;font-size:inherit;line-height:inherit}
+  .uct-dir{color:#4ade80;font-weight:500}.uct-conn{color:#3f3f46}.uct-file{color:#b4b4bc}.uct-dim{color:#636366}
 
   /* STRUCTURE */
-  .structure-section{padding:100px 0;background:var(--dark);color:var(--text-inverse)}
+  .structure-section{padding:64px 0;background:var(--dark);color:var(--text-inverse)}
   .structure-section .section-kicker{color:rgba(74,222,128,0.7)}
-  .structure-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px;color:#f4f4f5}
-  .structure-section>.wrap>p{font-size:15px;color:#a1a1aa;line-height:1.7;max-width:480px;margin-bottom:48px}
+  .structure-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:10px;color:#f4f4f5}
+  .structure-section>.wrap>p{font-size:15px;color:#b4b4bc;line-height:1.7;max-width:520px;margin-bottom:36px}
+  .structure-section>.wrap>p code{background:rgba(74,222,128,0.12);color:#4ade80}
   .tree-visual{display:grid;grid-template-columns:360px 1fr;gap:40px;align-items:start}
-  .tree-diagram{background:var(--dark-elevated);border:1px solid var(--dark-border);border-radius:12px;padding:28px;font-family:var(--mono);font-size:13px;line-height:2.1}
+  .tree-diagram{background:var(--dark-elevated);border:1px solid var(--dark-border);border-radius:12px;padding:28px}
+  .tree-diagram pre{font-family:var(--mono);font-size:13px;line-height:2.1;margin:0;white-space:pre}
   .tree-annotations{display:flex;flex-direction:column;gap:16px;padding-top:4px}
   .tree-anno{background:var(--dark-elevated);border:1px solid var(--dark-border);border-radius:var(--radius);padding:16px 20px;border-left:3px solid var(--dark-border);transition:border-color .3s var(--ease)}
   .tree-anno:hover{border-left-color:#4ade80}
   .tree-anno h4{font-size:13px;font-weight:700;color:#f4f4f5;margin-bottom:3px;display:flex;align-items:center;gap:8px}
   .tree-anno h4 code{background:rgba(74,222,128,0.12);color:#4ade80;font-size:11px;padding:2px 7px;border-radius:3px}
-  .tree-anno p{font-size:12px;color:#71717a;line-height:1.6}
+  .tree-anno p{font-size:13px;color:#a1a1aa;line-height:1.6}
 
   /* CONVENTIONS */
-  .conventions{padding:100px 0}
-  .conventions h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
-  .conventions>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:48px}
+  .conventions{padding:64px 0}
+  .conventions h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:10px}
+  .conventions>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:460px;margin-bottom:36px}
   .conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .conv-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .3s var(--ease)}
   .conv-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow)}
   .conv-card h3{font-size:15px;font-weight:700;letter-spacing:-0.2px;margin-bottom:10px}
   .conv-card p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px}
-  .conv-example{background:var(--dark);border-radius:var(--radius);padding:14px 18px;font-family:var(--mono);font-size:11px;line-height:1.9;color:#a1a1aa;overflow-x:auto}
-  .conv-example .g{color:#4ade80}.conv-example .r{color:#ef4444;opacity:0.6;text-decoration:line-through}.conv-example .d{color:#525252}.conv-example .w{color:#f4f4f5;font-weight:500}.conv-example .c{color:#525252}
+  .conv-example{background:var(--dark);border-radius:var(--radius);padding:14px 18px;font-family:var(--mono);font-size:11px;line-height:1.9;overflow-x:auto}
+  .conv-example pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:inherit;line-height:inherit}
+  .conv-example .g{color:#4ade80}.conv-example .r{color:#ef4444;opacity:0.6;text-decoration:line-through}.conv-example .d{color:#636366}.conv-example .w{color:#f4f4f5;font-weight:500}.conv-example .c{color:#636366}
+
+  /* PACKAGES */
+  .packages-section{padding:64px 0;background:var(--dark);color:var(--text-inverse)}
+  .packages-section .section-kicker{color:rgba(74,222,128,0.7)}
+  .packages-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:10px;color:#f4f4f5}
+  .packages-section>.wrap>p{font-size:15px;color:#b4b4bc;line-height:1.7;max-width:480px;margin-bottom:36px}
+  .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .pkg-card{background:var(--dark-elevated);border:1px solid var(--dark-border);border-radius:12px;padding:28px;transition:border-color .3s var(--ease)}
+  .pkg-card:hover{border-color:rgba(74,222,128,0.3)}
+  .pkg-card-name{font-family:var(--mono);font-size:14px;font-weight:500;color:#4ade80;margin-bottom:4px}
+  .pkg-card-name a{color:#4ade80;text-decoration:none}
+  .pkg-card-name a:hover{text-decoration:underline}
+  .pkg-card-desc{font-size:13px;color:#a1a1aa;line-height:1.55;margin-bottom:16px}
+  .pkg-card-tag{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:16px}
+  .pkg-card-tag.open{background:rgba(74,222,128,0.12);color:#4ade80}
+  .pkg-card pre{font-family:var(--mono);font-size:11px;line-height:1.85;color:#a1a1aa;margin:0;white-space:pre;background:rgba(0,0,0,0.3);border-radius:var(--radius-sm);padding:14px 16px;overflow-x:auto}
+  .pkg-card pre .fn{color:#93c5fd}.pkg-card pre .type{color:#fbbf24}.pkg-card pre .comment{color:#525252}
 
   /* PRINCIPLES */
-  .principles-section{padding:100px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-  .principles-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:48px;max-width:480px}
+  .principles-section{padding:64px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .principles-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:36px;max-width:480px}
   .principles-list{display:flex;flex-direction:column}
   .principle-row{display:grid;grid-template-columns:48px 180px 1fr;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--border)}
   .principle-row:last-child{border-bottom:none}
@@ -145,18 +167,19 @@
   .principle-desc{font-size:13px;color:var(--text-secondary);line-height:1.6}
 
   /* CTA */
-  .cta{padding:100px 0;text-align:center}
+  .cta{padding:64px 0;text-align:center}
   .cta h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-1.5px;line-height:1.08;margin-bottom:12px}
-  .cta p{font-size:15px;color:var(--text-secondary);line-height:1.65;max-width:400px;margin:0 auto 32px}
-  .cta-row{display:flex;justify-content:center;gap:12px;margin-bottom:40px}
+  .cta h2 code{font-size:inherit;background:var(--green-subtle);color:var(--green);padding:4px 14px}
+  .cta p{font-size:15px;color:var(--text-secondary);line-height:1.65;max-width:400px;margin:0 auto 24px}
+  .cta-row{display:flex;justify-content:center;gap:12px;margin-bottom:32px}
   .btn{font-family:var(--font);font-size:14px;font-weight:600;padding:12px 24px;border-radius:var(--radius);border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all var(--speed) var(--ease)}
   .btn-primary{background:var(--green);color:var(--text-inverse)}.btn-primary:hover{background:var(--green-hover);transform:translateY(-2px);box-shadow:0 4px 16px rgba(26,122,86,0.3)}
   .btn-secondary{background:var(--bg-elevated);color:var(--text-primary);border:1px solid var(--border)}.btn-secondary:hover{border-color:var(--border-hover);transform:translateY(-2px);box-shadow:var(--shadow-md)}
   .cta-terminal{max-width:520px;margin:0 auto;text-align:left;background:var(--dark);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg)}
   .cta-terminal-bar{height:34px;display:flex;align-items:center;padding:0 14px;background:var(--dark-elevated);gap:6px}
   .td{width:8px;height:8px;border-radius:50%}.td-r{background:#ff5f57}.td-y{background:#febc2e}.td-g{background:#28c840}
-  .cta-terminal-body{padding:18px 22px;font-family:var(--mono);font-size:12px;line-height:2;color:#71717a}
-  .cta-terminal-body .p{color:#4ade80}.cta-terminal-body .c{color:#f4f4f5}.cta-terminal-body .m{color:#525252}
+  .cta-terminal pre{margin:0;padding:18px 22px;font-family:var(--mono);font-size:12px;line-height:2;white-space:pre}
+  .cta-terminal .p{color:#4ade80}.cta-terminal .cmd{color:#f4f4f5}.cta-terminal .m{color:#636366}
 
   /* FOOTER */
   .footer{padding:28px 0;border-top:1px solid var(--border)}
@@ -168,17 +191,26 @@
 
   /* RESPONSIVE */
   @media(max-width:900px){
-    .wrap{padding:0 24px}.nav{padding:0 24px}.hero{padding:100px 24px 60px}
+    .wrap{padding:0 24px}.nav{padding:0 20px}.hero{padding:100px 24px 60px}
     .hero-trees{grid-template-columns:1fr}
+    .hero-tree pre{font-size:12px}
     .file-cards{grid-template-columns:1fr}.file-card,.file-card:first-child,.file-card:last-child{border-radius:12px}
     .usecase-grid{grid-template-columns:1fr}
     .tree-visual{grid-template-columns:1fr}
+    .tree-diagram pre{font-size:12px}
     .conv-grid{grid-template-columns:1fr}
+    .pkg-grid{grid-template-columns:1fr}
     .principle-row{grid-template-columns:36px 1fr}.principle-desc{grid-column:2}
     .nav-right a:not(.nav-cta){display:none}
     .cta-row{flex-direction:column;align-items:center}
     .footer-inner{flex-direction:column;gap:16px}
-    section,.three-files,.conventions,.cta,.principles-section,.usecases,.structure-section{padding:72px 0}
+    section,.three-files,.conventions,.cta,.principles-section,.usecases,.structure-section,.packages-section{padding:48px 0}
+  }
+  @media(max-width:480px){
+    .hero-tree{padding:20px}
+    .hero-tree pre{font-size:11px;line-height:1.8}
+    .cta-terminal pre{font-size:11px}
+    .usecase-card-tree pre{font-size:10px}
   }
   @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}.reveal{opacity:1;transform:none}}
 </style>
@@ -194,12 +226,12 @@
     <a href="#format">Format</a>
     <a href="#use-cases">Use cases</a>
     <a href="#structure">Structure</a>
+    <a href="#packages">Packages</a>
     <a href="https://github.com/cogniumhq/specifica" target="_blank" rel="noopener" aria-label="GitHub repository (opens in new window)">GitHub</a>
     <a href="https://specifica.app" class="nav-cta">Open editor <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
   </div>
 </nav>
 
-<!-- HERO -->
 <header class="hero">
   <div class="hero-top">
     <h1>Three files. Any item. Your repo.</h1>
@@ -219,44 +251,43 @@
   <div class="hero-trees">
     <div class="hero-tree">
       <span class="hero-tree-label">Software development</span>
-      <span class="ht-dir">.specifica/</span><br>
-      <span class="ht-conn">├── </span><span class="ht-file">principles.md</span><br>
-      <span class="ht-conn">│</span><br>
-      <span class="ht-conn">├── </span><span class="ht-feature">auth/</span><br>
-      <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span> <span class="ht-note">← requirements, edge cases</span><br>
-      <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span> <span class="ht-note">← architecture, decisions</span><br>
-      <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span> <span class="ht-note">← implementation steps</span><br>
-      <span class="ht-conn">│</span><br>
-      <span class="ht-conn">├── </span><span class="ht-feature">connect-repo/</span><br>
-      <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span><br>
-      <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span><br>
-      <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span><br>
-      <span class="ht-conn">│</span><br>
-      <span class="ht-conn">└── </span><span class="ht-feature">commit-flow/</span><br>
-      <span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span><br>
-      <span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span>
+      <pre><span class="ht-dir">.specifica/</span>
+<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-feature">auth/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>    <span class="ht-note">← requirements, edge cases</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>  <span class="ht-note">← architecture, decisions</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← implementation steps</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-feature">connect-repo/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">└── </span><span class="ht-feature">commit-flow/</span>
+<span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span>
+<span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span></pre>
     </div>
     <div class="hero-tree">
       <span class="hero-tree-label">Personal planning</span>
-      <span class="ht-dir">.clove/</span><br>
-      <span class="ht-conn">├── </span><span class="ht-file">principles.md</span> <span class="ht-note">← preferences, context</span><br>
-      <span class="ht-conn">│</span><br>
-      <span class="ht-conn">├── </span><span class="ht-feature">plan-saras-birthday/</span><br>
-      <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span> <span class="ht-note">← 12 people, surprise, budget</span><br>
-      <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span> <span class="ht-note">← Rosewood, don't invite Mike</span><br>
-      <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span> <span class="ht-note">← venue, guests, invitations</span><br>
-      <span class="ht-conn">│</span><br>
-      <span class="ht-conn">├── </span><span class="ht-feature">weekly-groceries/</span><br>
-      <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span> <span class="ht-note">← just a list</span><br>
-      <span class="ht-conn">│</span><br>
-      <span class="ht-conn">└── </span><span class="ht-feature">morning-routine/</span><br>
-      <span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span><br>
-      <span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span>
+      <pre><span class="ht-dir">.clove/</span>
+<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>  <span class="ht-note">← preferences, context</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-feature">plan-saras-birthday/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>    <span class="ht-note">← 12 people, surprise, budget</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>  <span class="ht-note">← Rosewood, don't invite Mike</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← venue, guests, invitations</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-feature">weekly-groceries/</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>   <span class="ht-note">← just a list</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">└── </span><span class="ht-feature">morning-routine/</span>
+<span class="ht-conn">    ├── </span><span class="ht-file">spec.md</span>
+<span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span></pre>
     </div>
   </div>
 </header>
 
-<!-- THREE FILES -->
 <section class="three-files" id="format">
   <div class="wrap">
     <div class="three-files-header reveal">
@@ -272,16 +303,17 @@
           <div class="file-card-question">Intent, constraints, scope</div>
           <p>What needs to happen and why. Requirements as checkboxes. Edge cases at the end.</p>
         </div>
-        <div class="file-card-preview">
-          <span class="fp-heading"># GitHub Auth</span><br><br>
-          <span class="fp-text">Users sign in with GitHub OAuth.</span><br><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">"Sign in with GitHub" button</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">OAuth requests `repo` scope</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Redirect to `/dashboard`</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Expired token → re-auth prompt</span><br><br>
-          <span class="fp-bold">**Edge cases:**</span> <span class="fp-text">User revokes</span><br>
-          <span class="fp-text">OAuth app → re-auth prompt.</span>
-        </div>
+        <div class="file-card-preview"><pre><span class="fp-heading"># GitHub Auth</span>
+
+<span class="fp-text">Users sign in with GitHub OAuth.</span>
+
+<span class="fp-check">- [ ]</span> <span class="fp-text">"Sign in with GitHub" button</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">OAuth requests `repo` scope</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">Redirect to `/dashboard`</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">Expired token → re-auth prompt</span>
+
+<span class="fp-bold">**Edge cases:**</span> <span class="fp-text">User revokes</span>
+<span class="fp-text">OAuth app → re-auth prompt.</span></pre></div>
       </div>
       <div class="file-card reveal">
         <div class="file-card-head">
@@ -290,17 +322,17 @@
           <div class="file-card-question">Decisions and reasoning</div>
           <p>How it works and why. Architecture, data model, key decisions with context.</p>
         </div>
-        <div class="file-card-preview">
-          <span class="fp-heading"># Auth — Design</span><br><br>
-          <span class="fp-heading">## Flow</span><br>
-          <span class="fp-text">Browser → /auth/github → 302</span><br>
-          <span class="fp-text">GitHub → /callback?code=xxx</span><br>
-          <span class="fp-text">Worker → encrypt → KV → cookie</span><br><br>
-          <span class="fp-heading">## Key Decisions</span><br>
-          <span class="fp-bold">1.</span> <span class="fp-text">Token in KV, not cookie</span><br>
-          <span class="fp-bold">2.</span> <span class="fp-text">8h TTL — security vs friction</span><br>
-          <span class="fp-bold">3.</span> <span class="fp-text">`repo` scope — private access</span>
-        </div>
+        <div class="file-card-preview"><pre><span class="fp-heading"># Auth — Design</span>
+
+<span class="fp-heading">## Flow</span>
+<span class="fp-text">Browser → /auth/github → 302</span>
+<span class="fp-text">GitHub → /callback?code=xxx</span>
+<span class="fp-text">Worker → encrypt → KV → cookie</span>
+
+<span class="fp-heading">## Key Decisions</span>
+<span class="fp-bold">1.</span> <span class="fp-text">Token in KV, not cookie</span>
+<span class="fp-bold">2.</span> <span class="fp-text">8h TTL — security vs friction</span>
+<span class="fp-bold">3.</span> <span class="fp-text">`repo` scope — private access</span></pre></div>
       </div>
       <div class="file-card reveal">
         <div class="file-card-head">
@@ -309,23 +341,21 @@
           <div class="file-card-question">Ordered, flat, checkable</div>
           <p>A checklist ordered by dependency. The only file with machine-readable state.</p>
         </div>
-        <div class="file-card-preview">
-          <span class="fp-heading"># Auth — Tasks</span><br><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Create GitHub OAuth App</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/github`</span><br>
-          <span class="fp-check">- [x]</span> <span class="fp-text">Implement `/auth/callback`</span><br>
-          <span class="fp-check">- [x]</span> <span class="fp-text">Upsert user in D1</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/logout`</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Auth middleware</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">Handle expired token</span><br>
-          <span class="fp-check">- [ ]</span> <span class="fp-text">D1 migration: `users`</span>
-        </div>
+        <div class="file-card-preview"><pre><span class="fp-heading"># Auth — Tasks</span>
+
+<span class="fp-check">- [ ]</span> <span class="fp-text">Create GitHub OAuth App</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/github`</span>
+<span class="fp-check">- [x]</span> <span class="fp-text">Implement `/auth/callback`</span>
+<span class="fp-check">- [x]</span> <span class="fp-text">Upsert user in D1</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">Implement `/auth/logout`</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">Auth middleware</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">Handle expired token</span>
+<span class="fp-check">- [ ]</span> <span class="fp-text">D1 migration: `users`</span></pre></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- USE CASES -->
 <section class="usecases" id="use-cases">
   <div class="wrap">
     <div class="section-kicker reveal">Use cases</div>
@@ -339,7 +369,10 @@
           <div class="usecase-card-desc">Requirements, architecture, and implementation steps for a software feature.</div>
           <div class="usecase-card-files"><span class="usecase-file-tag">spec.md</span><span class="usecase-file-tag">design.md</span><span class="usecase-file-tag">tasks.md</span></div>
         </div>
-        <div class="usecase-card-tree"><span class="uct-dir">auth/</span><br><span class="uct-conn">├── </span><span class="uct-file">spec.md</span> <span class="uct-dim">← OAuth flow, edge cases</span><br><span class="uct-conn">├── </span><span class="uct-file">design.md</span> <span class="uct-dim">← KV tokens, session cookie</span><br><span class="uct-conn">└── </span><span class="uct-file">tasks.md</span> <span class="uct-dim">← 9 ordered steps</span></div>
+        <div class="usecase-card-tree"><pre><span class="uct-dir">auth/</span>
+<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← OAuth flow, edge cases</span>
+<span class="uct-conn">├── </span><span class="uct-file">design.md</span>  <span class="uct-dim">← KV tokens, session cookie</span>
+<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← 9 ordered steps</span></pre></div>
       </div>
       <div class="usecase-card reveal">
         <div class="usecase-card-head">
@@ -348,7 +381,9 @@
           <div class="usecase-card-desc">A repeating workflow with context and a checklist. Onboarding, standup prep, release process.</div>
           <div class="usecase-card-files"><span class="usecase-file-tag">spec.md</span><span class="usecase-file-tag dim">design.md</span><span class="usecase-file-tag">tasks.md</span></div>
         </div>
-        <div class="usecase-card-tree"><span class="uct-dir">new-hire-onboarding/</span><br><span class="uct-conn">├── </span><span class="uct-file">spec.md</span> <span class="uct-dim">← goals, timeline, who's involved</span><br><span class="uct-conn">└── </span><span class="uct-file">tasks.md</span> <span class="uct-dim">← accounts, access, meetings…</span></div>
+        <div class="usecase-card-tree"><pre><span class="uct-dir">new-hire-onboarding/</span>
+<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← goals, timeline, who's involved</span>
+<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← accounts, access, meetings…</span></pre></div>
       </div>
       <div class="usecase-card reveal">
         <div class="usecase-card-head">
@@ -357,35 +392,37 @@
           <div class="usecase-card-desc">A project with intent, key decisions, and steps. Or just a checklist — your call.</div>
           <div class="usecase-card-files"><span class="usecase-file-tag">spec.md</span><span class="usecase-file-tag">design.md</span><span class="usecase-file-tag">tasks.md</span></div>
         </div>
-        <div class="usecase-card-tree"><span class="uct-dir">plan-saras-birthday/</span><br><span class="uct-conn">├── </span><span class="uct-file">spec.md</span> <span class="uct-dim">← 12 people, surprise, budget</span><br><span class="uct-conn">├── </span><span class="uct-file">design.md</span> <span class="uct-dim">← Rosewood, don't invite Mike</span><br><span class="uct-conn">└── </span><span class="uct-file">tasks.md</span> <span class="uct-dim">← venue, guests, cake</span></div>
+        <div class="usecase-card-tree"><pre><span class="uct-dir">plan-saras-birthday/</span>
+<span class="uct-conn">├── </span><span class="uct-file">spec.md</span>    <span class="uct-dim">← 12 people, surprise, budget</span>
+<span class="uct-conn">├── </span><span class="uct-file">design.md</span>  <span class="uct-dim">← Rosewood, don't invite Mike</span>
+<span class="uct-conn">└── </span><span class="uct-file">tasks.md</span>   <span class="uct-dim">← venue, guests, cake</span></pre></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STRUCTURE -->
 <section class="structure-section" id="structure">
   <div class="wrap">
     <div class="section-kicker reveal">Directory structure</div>
     <h2 class="reveal">One root. Item folders inside.</h2>
-    <p class="reveal">Root directory is configurable — <code style="background:rgba(74,222,128,0.12);color:#4ade80;">.specifica/</code> for software, <code style="background:rgba(74,222,128,0.12);color:#4ade80;">.clove/</code> for personal, or anything else. A <code style="background:rgba(74,222,128,0.12);color:#4ade80;">principles.md</code> at the root provides context. One folder per item.</p>
+    <p class="reveal">Root directory is configurable — <code>.specifica/</code> for software, <code>.clove/</code> for personal, or anything else. A <code>principles.md</code> at the root provides context. One folder per item.</p>
     <div class="tree-visual">
       <div class="tree-diagram reveal">
-        <span class="ht-dir">.specifica/</span> <span class="ht-note">← configurable</span><br>
-        <span class="ht-conn">│</span><br>
-        <span class="ht-conn">├── </span><span class="ht-file">principles.md</span><br>
-        <span class="ht-conn">│</span><br>
-        <span class="ht-conn">├── </span><span class="ht-feature">auth/</span><br>
-        <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span><br>
-        <span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span><br>
-        <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span><br>
-        <span class="ht-conn">│</span><br>
-        <span class="ht-conn">├── </span><span class="ht-feature">connect-repo/</span><br>
-        <span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span><br>
-        <span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span><br>
-        <span class="ht-conn">│</span><br>
-        <span class="ht-conn">└── </span><span class="ht-feature">weekly-groceries/</span><br>
-        <span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span>
+        <pre><span class="ht-dir">.specifica/</span>  <span class="ht-note">← configurable</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-file">principles.md</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-feature">auth/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">design.md</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">├── </span><span class="ht-feature">connect-repo/</span>
+<span class="ht-conn">│   ├── </span><span class="ht-file">spec.md</span>
+<span class="ht-conn">│   └── </span><span class="ht-file">tasks.md</span>
+<span class="ht-conn">│</span>
+<span class="ht-conn">└── </span><span class="ht-feature">weekly-groceries/</span>
+<span class="ht-conn">    └── </span><span class="ht-file">tasks.md</span></pre>
       </div>
       <div class="tree-annotations">
         <div class="tree-anno reveal"><h4><code>principles.md</code></h4><p>Context for the whole project or user. Project-level: values and constraints. User-level: preferences and memory.</p></div>
@@ -397,7 +434,6 @@
   </div>
 </section>
 
-<!-- CONVENTIONS -->
 <section class="conventions" id="conventions">
   <div class="wrap">
     <div class="section-kicker reveal">Conventions</div>
@@ -407,28 +443,73 @@
       <div class="conv-card reveal">
         <h3>Requirements are checkboxes</h3>
         <p>Each one is a single, testable behavior.</p>
-        <div class="conv-example"><span class="g">- [ ] Expired token → show "Re-authenticate"</span><br><span class="g">- [ ] Commit button shows pending changes badge</span><br><span class="d">────</span><br><span class="r">- [ ] Good error handling</span> <span class="c">← too vague</span><br><span class="r">- [ ] Use Zustand for state</span> <span class="c">← implementation</span></div>
+        <div class="conv-example"><pre><span class="g">- [ ] Expired token → show "Re-authenticate"</span>
+<span class="g">- [ ] Commit button shows pending changes badge</span>
+<span class="d">────</span>
+<span class="r">- [ ] Good error handling</span>  <span class="c">← too vague</span>
+<span class="r">- [ ] Use Zustand for state</span>  <span class="c">← implementation</span></pre></div>
       </div>
       <div class="conv-card reveal">
         <h3>tasks.md is machine-readable</h3>
         <p>Checkboxes parse to structured data. The one file tools can read and write programmatically.</p>
-        <div class="conv-example"><span class="w">- [x]</span> Pick venue <span class="c">← done: true</span><br><span class="w">- [x]</span> Build guest list <span class="c">← done: true</span><br><span class="w">- [ ]</span> Send invitations <span class="c">← done: false</span><br><span class="w">- [ ]</span> Order cake <span class="c">← done: false</span></div>
+        <div class="conv-example"><pre><span class="w">- [x]</span> Pick venue          <span class="c">← done: true</span>
+<span class="w">- [x]</span> Build guest list    <span class="c">← done: true</span>
+<span class="w">- [ ]</span> Send invitations    <span class="c">← done: false</span>
+<span class="w">- [ ]</span> Order cake          <span class="c">← done: false</span></pre></div>
       </div>
       <div class="conv-card reveal">
         <h3>Edge cases are compact</h3>
         <p>Scenario → outcome pairs. Failure modes, not stories.</p>
-        <div class="conv-example"><span class="w">**Edge cases:**</span> User revokes OAuth app → re-auth prompt. User has no repos → empty state. Token expires mid-edit → preserve draft.</div>
+        <div class="conv-example"><pre><span class="w">**Edge cases:**</span> User revokes OAuth
+app → re-auth prompt. User has no
+repos → empty state. Token expires
+mid-edit → preserve draft.</pre></div>
       </div>
       <div class="conv-card reveal">
         <h3>Design docs explain <em>why</em></h3>
         <p>Key Decisions carry reasoning, not just choices.</p>
-        <div class="conv-example"><span class="w">## Key Decisions</span><br><br><span class="w">1.</span> Token in KV, not cookie <span class="d">— never expose token client-side</span><br><span class="w">2.</span> Surprise party <span class="d">— Sara checks her email constantly</span></div>
+        <div class="conv-example"><pre><span class="w">## Key Decisions</span>
+
+<span class="w">1.</span> Token in KV, not cookie
+   <span class="d">— never expose token client-side</span>
+<span class="w">2.</span> Surprise party
+   <span class="d">— Sara checks her email constantly</span></pre></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRINCIPLES -->
+<section class="packages-section" id="packages">
+  <div class="wrap">
+    <div class="section-kicker reveal">Packages</div>
+    <h2 class="reveal">Parse it. Store it. Build on it.</h2>
+    <p class="reveal">Two open-source npm packages. The parser reads and writes the format. The store defines a standard interface for any backend — implement it with SQLite, filesystem, PostgreSQL, or anything else.</p>
+    <div class="pkg-grid">
+      <div class="pkg-card reveal">
+        <span class="pkg-card-tag open">Open source</span>
+        <div class="pkg-card-name"><a href="https://www.npmjs.com/package/@specifica/format" target="_blank" rel="noopener">@specifica/format</a></div>
+        <div class="pkg-card-desc">Pure TypeScript parser and serializer. No dependencies. Reads and writes the three-file format.</div>
+        <pre><span class="fn">parseTasks</span>(md) → <span class="type">Task[]</span>
+<span class="fn">serializeTasks</span>(tasks) → <span class="type">string</span>
+<span class="fn">parse</span>(spec?, design?, tasks?) → <span class="type">Item</span>
+<span class="fn">serialize</span>(item) → <span class="type">{ spec, design, tasks }</span>
+<span class="fn">validate</span>(files) → <span class="type">{ valid, errors }</span></pre>
+      </div>
+      <div class="pkg-card reveal">
+        <span class="pkg-card-tag open">Open source</span>
+        <div class="pkg-card-name"><a href="https://www.npmjs.com/package/@specifica/store" target="_blank" rel="noopener">@specifica/store</a></div>
+        <div class="pkg-card-desc">StorageAdapter interface. Items, content, tasks, memory, chat, git sync. Implement it with any backend.</div>
+        <pre><span class="comment">interface StorageAdapter</span>
+<span class="fn">createItem</span>(title, type?) → <span class="type">Item</span>
+<span class="fn">getContent</span>(itemId) → <span class="type">{ spec, design, tasks }</span>
+<span class="fn">updateTaskStatus</span>(id, order, done)
+<span class="fn">addMemory</span>(category, key, value)
+<span class="fn">syncToGit</span>(itemId)</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="principles-section">
   <div class="wrap">
     <div class="section-kicker reveal">Principles</div>
@@ -443,10 +524,9 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta">
   <div class="wrap">
-    <h2 class="reveal">Start with <code style="font-size:inherit;background:var(--green-subtle);color:var(--green);padding:4px 14px;">mkdir</code></h2>
+    <h2 class="reveal">Start with <code>mkdir</code></h2>
     <p class="reveal">Create the directory, add your first item, commit. Or use the editor for a web UI.</p>
     <div class="cta-row reveal">
       <a href="https://specifica.app" class="btn btn-primary"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>Open specifica.app</a>
@@ -454,14 +534,12 @@
     </div>
     <div class="cta-terminal reveal">
       <div class="cta-terminal-bar"><div class="td td-r"></div><div class="td td-y"></div><div class="td td-g"></div></div>
-      <div class="cta-terminal-body">
-        <span class="p">$</span> <span class="c">mkdir -p .specifica/auth</span><br>
-        <span class="p">$</span> <span class="c">touch .specifica/auth/{spec,design,tasks}.md</span><br>
-        <span class="p">$</span> <span class="c">git add .specifica/ && git commit -m "docs: init specifica"</span><br>
-        <br>
-        <span class="m"># or install the parser</span><br>
-        <span class="p">$</span> <span class="c">npm install @specifica/format</span>
-      </div>
+      <pre><span class="p">$</span> <span class="cmd">mkdir -p .specifica/auth</span>
+<span class="p">$</span> <span class="cmd">touch .specifica/auth/{spec,design,tasks}.md</span>
+<span class="p">$</span> <span class="cmd">git add .specifica/ && git commit -m "docs: init specifica"</span>
+
+<span class="m"># or install the packages</span>
+<span class="p">$</span> <span class="cmd">npm install @specifica/format @specifica/store</span></pre>
     </div>
   </div>
 </section>
