@@ -1,90 +1,115 @@
-# Reference Site — Tasks
+# Specifica — Tasks
 
-Implementation tasks for the specifica.org reference site.
+## Phase 0: Packages + Site (Days 1–3)
 
-## Core implementation
+### `@specifica/format`
+- [ ] Create `packages/format/` with TypeScript config
+- [ ] Implement `parseTasks(tasksMd)` → `Task[]` (checkbox parsing)
+- [ ] Implement `serializeTasks(tasks)` → markdown string
+- [ ] Implement `parse(spec?, design?, tasks?)` → `Item`
+- [ ] Implement `serialize(item)` → `{ spec?, design?, tasks? }`
+- [ ] Implement `validate(files)` → `{ valid, errors, warnings }`
+- [ ] Kebab-case directory name validation
+- [ ] Optional frontmatter support in spec.md
+- [ ] Unit tests for parse/serialize roundtrip
+- [ ] Publish to npm as `@specifica/format`
 
-- [x] Set up HTML structure with semantic sections
-- [x] Define CSS variables for design system
-- [x] Implement responsive layout system
-- [x] Create fixed navigation with logo and links
-- [x] Build hero section with two-column grid
-- [x] Create hero directory tree visualization
-- [x] Build statement band section
-- [x] Create three-file cards with previews
-- [x] Build structure section with tree diagram and annotations
-- [x] Create conventions section with example cards
-- [x] Build principles section with numbered list
-- [x] Create CTA section with terminal example
-- [x] Implement footer with links
-- [x] Add scroll-based reveal animations
-- [x] Add nav border on scroll
-- [x] Implement responsive breakpoints for mobile
-- [x] Add reduced-motion media query support
+### `@specifica/store` interface
+- [ ] Define `StorageAdapter` interface (all method signatures, async)
+- [ ] Define all types (`StoredItem`, `MemoryItem`, `Message`, `GitConfig`, `UserSettings`, `BoardState`)
+- [ ] Ensure no infrastructure leakage (no Cloudflare, no SQLite in interface)
+- [ ] Publish to npm as `@specifica/store`
+- [ ] Align interface with Bombastic team
 
-## Content
-
-- [x] Write hero headline and subheadline
-- [x] Write format statement copy
-- [x] Document three-file philosophy (spec, design, tasks)
-- [x] Create realistic file preview examples
-- [x] Write directory structure annotations
-- [x] Document all conventions with examples
-- [x] Write 5 core principles
-- [x] Create terminal getting-started commands
-- [x] Add metadata (title, description, favicon)
-
-## Design polish
-
-- [x] Implement eucalyptus green brand color
-- [x] Load Sora and JetBrains Mono fonts
-- [x] Create Check-Doc SVG logo mark
-- [x] Style dark code blocks with syntax colors
-- [x] Add hover states to interactive elements
-- [x] Implement smooth scroll behavior
-- [x] Add box shadows and elevation
-- [x] Create custom selection color
-
-## Deployment preparation
-
-- [ ] Test page load performance on 3G
-- [ ] Verify accessibility (keyboard nav, screen readers)
-- [ ] Test on mobile devices (iOS Safari, Android Chrome)
-- [ ] Test on different browsers (Chrome, Firefox, Safari)
-- [ ] Verify all internal anchor links work
-- [ ] Check external links (GitHub, specifica.app)
-- [ ] Set up Cloudflare Pages project
+### specifica.org
+- [ ] Deploy specifica.org to Cloudflare Pages (`specifica.pages.dev`)
 - [ ] Configure custom domain (specifica.org)
-- [ ] Add Cloudflare Pages deploy hook to GitHub
-- [ ] Deploy to production
 
-## Post-launch improvements
+## Phase 1: Auth + Scaffold (Days 4–5)
 
-- [ ] Add OpenGraph meta tags for social sharing
-- [ ] Create Twitter Card metadata
-- [ ] Add structured data (JSON-LD) for SEO
-- [ ] Create favicon.ico for older browsers
-- [ ] Add Apple touch icons
-- [ ] Consider adding example .specifica files as downloadable templates
-- [ ] Add "Edit on GitHub" links if community contributions needed
-- [ ] Monitor Core Web Vitals and optimize if needed
-- [ ] Add analytics (privacy-respecting, optional)
+- [ ] Create GitHub OAuth App (dev + prod)
+- [ ] Implement `/auth/github` → redirect to GitHub with state param
+- [ ] Implement `/auth/callback` → exchange code, encrypt token, store in KV
+- [ ] Upsert user in D1, set HTTP-only session cookie
+- [ ] Implement `/auth/logout` → clear KV + cookie
+- [ ] Auth middleware for `/dashboard` and `/api/*` routes
+- [ ] Handle expired token → re-auth redirect
+- [ ] Landing page with "Sign in with GitHub" button
 
-## Versioning & Build System (Future)
+## Phase 2: Connect Repo + File Tree (Days 6–7)
 
-**Note**: Deferred until format stabilizes or manual version updates become painful (likely v1.0+).
+- [ ] "Connect Repo" modal with searchable repo list (`GET /user/repos`)
+- [ ] `POST /api/projects` → check for `.specifica/`, create project record
+- [ ] Scaffold logic: create `.specifica/` template via GitHub Trees API if missing
+- [ ] Dashboard: project list with repo name + last updated
+- [ ] Project page: sidebar file tree from `GET /git/trees/{branch}?recursive=1`
+- [ ] File tree component (collapsible folders, file icons, active highlight)
+- [ ] Click file → fetch + render markdown (react-markdown + remark-gfm)
+- [ ] URL routing per file (`/project/:id/:path`)
+- [ ] "Add Feature" flow (name → slugify → create commit)
+- [ ] Empty file placeholder with "Create this file" button
 
-- [ ] Define semantic versioning scheme for format changes
-- [ ] Create `version.json` with current version and status
-- [ ] Split `index.html` into modular sections
-- [ ] Create HTML template with version placeholders
-- [ ] Write simple build script (Node.js or similar)
-- [ ] Add `package.json` with build command
-- [ ] Update Cloudflare Pages config with build command
-- [ ] Set up git tags for version releases
-- [ ] Configure Cloudflare Pages to read version from git tags
-- [ ] Create version changelog (CHANGELOG.md)
-- [ ] Add version number to footer/nav display
-- [ ] Document versioning process in README
-- [ ] Test build process locally
-- [ ] Test automated deploy with version tags
+## Phase 3: Edit Inline (Days 8–9)
+
+- [ ] Install CodeMirror 6 with markdown extension (dynamic import)
+- [ ] Editor component: split-pane (CodeMirror left, preview right)
+- [ ] Pending changes state: track original content, SHA, current content per file
+- [ ] "Edit" toggle between view and editor mode
+- [ ] "Save" stages locally, "Discard" reverts to original
+- [ ] Unsaved changes dot in sidebar
+- [ ] Navigation guard: prompt on unsaved changes
+- [ ] New file templates (spec.md, design.md, tasks.md starters)
+- [ ] `Cmd+S` keybinding
+
+## Phase 4: Chat Refine (Days 10–12)
+
+- [ ] System prompt for spec editing
+- [ ] `POST /api/chat` → build context (system + file + history) → proxy SSE stream
+- [ ] Chat panel UI (message list, input, send button)
+- [ ] Streaming token-by-token display
+- [ ] Diff view component (green/red via `diff` library)
+- [ ] "Accept" → stage as pending change, "Reject" → discard
+- [ ] Chat history persisted per file per session
+- [ ] Load last 20 messages per file on open
+- [ ] Typing/generating indicator
+- [ ] Stream error handling with retry option
+
+## Phase 5: Commit (Day 13)
+
+- [ ] "Commit" button with pending changes badge
+- [ ] Commit review panel: file list + checkboxes + diffs + message input
+- [ ] Auto-generated commit message from file names
+- [ ] `POST /api/projects/:id/commit` → GitHub Trees API 5-step atomic commit
+- [ ] SHA conflict detection (stored vs remote blob SHA)
+- [ ] Conflict warning UI (skip / force)
+- [ ] Success toast with link to GitHub commit
+- [ ] Error handling: preserve pending changes on failure
+- [ ] Disable button when no pending changes
+
+## Phase 6: Cognium DO Engine — `StorageAdapter` Implementation (parallel)
+
+- [ ] Implement `StorageAdapter` as Cloudflare Durable Object class
+- [ ] SQLite schema + migrations
+- [ ] Implement item CRUD (create, update, get, list, archive)
+- [ ] Implement content storage (get/update per item per file)
+- [ ] Implement structured task access (parse/update checkbox state via `@specifica/format`)
+- [ ] Implement memory with provenance (add, get, delete, serialize to markdown)
+- [ ] Implement chat message storage (scoped per item + global)
+- [ ] Implement settings storage
+- [ ] Implement git sync: configure, sync single item, sync all (GitHub REST API)
+- [ ] Git sync: debounce on meaningful state changes
+- [ ] Git sync: configurable root directory
+- [ ] Internal package (not published to npm)
+
+## Estimate
+
+| Phase | Days | Blocks |
+|-------|------|--------|
+| Packages + Site | 3 | Blocks Bombastic |
+| Auth + Scaffold | 2 | — |
+| Connect Repo + File Tree | 2 | — |
+| Edit Inline | 2 | — |
+| Chat Refine | 3 | — |
+| Commit | 1 | — |
+| Store Build | parallel | Co-owned, internal |
+| **Total** | **13 + parallel** | |

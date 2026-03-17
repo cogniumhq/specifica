@@ -1,0 +1,41 @@
+{
+  "name": "@specifica/format",
+  "version": "0.1.0",
+  "description": "Pure TypeScript parser and serializer for the Specifica format",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "specifica",
+    "specification",
+    "markdown",
+    "parser",
+    "format"
+  ],
+  "author": "Cognium",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cogniumhq/specifica",
+    "directory": "packages/format"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "@specifica/store",
+  "version": "0.1.0",
+  "description": "Storage adapter interface for Specifica - implementation-agnostic types and contracts",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "specifica",
+    "storage",
+    "adapter",
+    "interface",
+    "types"
+  ],
+  "author": "Cognium",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cogniumhq/specifica",
+    "directory": "packages/store"
+  },
+  "dependencies": {
+    "@specifica/format": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,185 +1,367 @@
-# Reference Site — Design
+# Specifica — Design
 
-Technical architecture and design decisions for the static reference site.
-
-## Architecture
-
-**Single-file static site**
-- One `index.html` file contains everything
-- Inline `<style>` block with all CSS
-- Inline `<script>` block with minimal JS
-- No build process, bundler, or compilation
-- No external dependencies except Google Fonts
-
-**Why single-file?**
-- Zero deployment complexity
-- Works offline after first load
-- Demonstrates simplicity (our core value)
-- Fast page load (no cascade of requests)
-- Can be viewed locally with `open index.html`
-
-## Design system
-
-**Colors** (CSS variables in `:root`)
-```
---green: #1a7a56         (brand primary)
---green-hover: #15694a   (interactive states)
---green-subtle: #e8f5ee  (backgrounds)
---text-primary: #18181b  (body text)
---text-secondary: #52525b (supporting text)
---dark: #111113          (code blocks)
-```
-
-**Typography**
-- UI: Sora (400, 500, 600, 700) from Google Fonts
-- Code: JetBrains Mono (400, 500) from Google Fonts
-- Base size: 15px with 1.6 line-height
-- Headings use negative letter-spacing for tighter feel
-
-**Layout**
-- Max-width wrapper: 1080px
-- Padding: 40px on desktop, 24px on mobile
-- Responsive breakpoint: 900px
-- Grid-based sections (2-col, 3-col)
-
-**Components**
-- `.reveal` class for scroll-triggered fade-in animations
-- `.hero-tree` for directory visualization
-- `.file-card` for three-file explanation
-- `.tree-visual` for structure section
-- `.conv-card` for convention examples
-- `.cta-terminal` for terminal command display
-
-## Page sections
+## System Overview
 
 ```
-Nav (fixed)
-  ↓
-Hero (2-col grid: text + tree)
-  ↓
-Statement (full-width text band)
-  ↓
-Three Files (3-col card grid)
-  ↓
-Structure (dark section, tree + annotations)
-  ↓
-Conventions (2-col card grid)
-  ↓
-Principles (numbered list)
-  ↓
-CTA (centered with terminal)
-  ↓
-Footer
+┌─────────────────────────────────────────────────────────────┐
+│                    Cognium Products                          │
+│                                                             │
+│   specifica.app          Clove (Bombastic)     Future apps  │
+│   ┌─────────────┐       ┌─────────────┐                    │
+│   │ Next.js 15   │       │ Board UI     │                   │
+│   │ Claude API   │       │ Cortex proxy │                   │
+│   └──────┬──────┘       └──────┬──────┘                    │
+│          │                     │                            │
+│          └──────────┬──────────┘                            │
+│                     ▼                                       │
+│          ┌─────────────────────┐                            │
+│          │ @specifica/store    │ ← Interface (open source)  │
+│          │ (StorageAdapter)    │                             │
+│          └──────────┬──────────┘                            │
+│                     │ implements                            │
+│          ┌──────────┴──────────┐                            │
+│          │ Cognium DO Engine   │ ← Internal (CF DO+SQLite)  │
+│          └──────────┬──────────┘                            │
+│                     │                                       │
+│          ┌──────────┴──────────┐                            │
+│          │ @specifica/format   │ ← Parser (open source)     │
+│          └──────────┬──────────┘                            │
+│                     │                                       │
+│                     ▼                                       │
+│              ┌──────────────┐                               │
+│              │  GitHub API   │ ← Git sync                   │
+│              └──────────────┘                               │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-## Interactive features
+## Two-Layer Storage
 
-**Scroll animations**
-- IntersectionObserver watches `.reveal` elements
-- Fade-in + translateY(20px → 0) on viewport entry
-- Threshold: 0.12, rootMargin: -40px
-- Respects `prefers-reduced-motion`
+| Layer | Tech | Purpose |
+|-------|------|---------|
+| Working | SQLite in Cloudflare DO | Fast reads/writes for live app. Board state, chat, settings. |
+| Persistence | Git repo via GitHub API | Portable, version-controlled, user-owned. Content files only. |
 
-**Nav border**
-- Transparent by default
-- `border-bottom: 1px solid var(--border)` after 10px scroll
-- Smooth transition on scroll event
+Chat stays in SQLite. Content files sync to Git. Chat is scaffolding — files are the building.
 
-**No JavaScript required for**
-- Content rendering
-- Layout
-- Navigation (anchor links)
-- Responsive behavior
+---
 
-## Code block styling
+## Package 1: `@specifica/format`
 
-**Multiple color schemes for different contexts:**
-- `.ht-*` classes: Hero tree (dir, conn, file, feature, note)
-- `.fp-*` classes: File previews (heading, text, check, bold, key)
-- Convention examples: `.g` (good), `.r` (bad), `.d` (divider), `.w` (white), `.c` (comment)
+Pure TypeScript. No infrastructure dependencies. Open source, npm published.
 
-All use dark background (#111113) with syntax-appropriate foreground colors.
+### API
 
-## Key decisions
-
-**1. Single HTML file instead of build process**
-- Makes the site itself an example of simplicity
-- No npm, no bundler, no config files
-- Trade-off: harder to maintain large amounts of content, but site is intentionally small
-
-**2. Inline fonts instead of self-hosted**
-- Google Fonts for Sora + JetBrains Mono
-- Trade-off: external dependency and GDPR consideration, but significantly simpler
-- Can self-host later if needed
-
-**3. Minimal JavaScript (scroll observer only)**
-- Page is fully functional without JS
-- JS only enhances with animations
-- Trade-off: could use a framework, but that contradicts our simplicity principle
-
-**4. No syntax highlighter library**
-- Custom color classes (`.g`, `.r`, `.fp-heading`, etc.)
-- Trade-off: manual markup of code examples, but keeps site lightweight
-
-**5. Dark code blocks on light page**
-- Terminal/code sections use dark theme (#111113 background)
-- Main page uses light theme
-- Provides visual distinction and focuses attention on code examples
-
-## Deployment
-
-**Target: Cloudflare Pages**
-- Domain: `specifica.org`
-- Preview: `specifica.pages.dev`
-- Build command: (none — static file)
-- Output directory: `/` (root)
-
-**Deploy process:**
-1. Push to `main` branch
-2. Cloudflare Pages auto-deploys `index.html`
-3. Site live at specifica.org
-
-No build step, no environment variables, no serverless functions.
-
-## Versioning & Build System (Future)
-
-**Current state**: Single `index.html` file edited directly. Version shown as "v0.1 draft" in hero meta section.
-
-**Future state**: Template-based build system that generates `index.html` from versioned source files.
-
-**Semantic versioning for the format**
-- MAJOR: Breaking changes to `.specifica/` structure or file conventions
-- MINOR: New conventions or optional additions (e.g., new status tags)
-- PATCH: Documentation clarifications, typo fixes, example updates
-
-**Potential build approach**
-```
-src/
-├── version.json          # { "version": "1.0.0", "status": "stable" }
-├── template.html         # HTML with {{version}} placeholders
-├── sections/             # Modular content sections
-│   ├── hero.html
-│   ├── three-files.html
-│   └── ...
-└── build.js              # Simple Node script to assemble
-
-Output: index.html (versioned and built)
+```typescript
+parse(specMd?: string, designMd?: string, tasksMd?: string): Item
+serialize(item: Item): { spec?: string, design?: string, tasks?: string }
+validate(files: Record<string, string>): ValidationResult
+parseTasks(tasksMd: string): Task[]
+serializeTasks(tasks: Task[]): string
 ```
 
-**Cloudflare Pages integration**
-- Build command: `node build.js` (or similar)
-- Output directory: `/dist`
-- Environment variable: `FORMAT_VERSION` from git tags
-- Auto-deploy on version tag push
+### Types
 
-**Why defer this?**
-- MVP doesn't need build complexity
-- Single HTML file is easier to audit and understand
-- Can manually update version string for v0.x releases
-- Introduce build system when format stabilizes (v1.0+)
+```typescript
+interface Item {
+  slug: string                        // kebab-case directory name
+  spec?: string                       // raw markdown
+  design?: string                     // raw markdown
+  tasks?: Task[]                      // parsed checkboxes
+  metadata?: Record<string, string>   // optional frontmatter
+}
 
-**When to implement**
-- After 3+ manual version updates become painful
-- When we need to maintain multiple format versions simultaneously
-- If community contributions require easier content editing
-- When format reaches v1.0 and stability matters more
+interface Task {
+  title: string
+  done: boolean
+  order: number
+}
+
+interface ValidationResult {
+  valid: boolean
+  errors: string[]
+  warnings: string[]
+}
+```
+
+### Key Decisions
+
+1. **spec.md and design.md are raw strings.** The parser doesn't parse internal structure (headings, sections). Internal structure is convention, not schema.
+2. **tasks.md is structured.** Checkboxes have machine-readable state — the one file with real parsing.
+3. **All files optional.** Apps decide what to generate. The format doesn't enforce completeness.
+4. **~200 lines.** Keep it small. One file, no dependencies.
+
+---
+
+## Package 2: `@specifica/store` (Interface)
+
+Open source. Published to npm. Defines the storage adapter contract. No infrastructure dependencies — pure TypeScript interfaces and types.
+
+### StorageAdapter Interface
+
+```typescript
+interface StorageAdapter {
+  // ─── Items (generic — works for todos, features, routines) ───
+  createItem(title: string, type?: string): Promise<Item>
+  updateItem(id: string, updates: Partial<Item>): Promise<Item>
+  getItem(id: string): Promise<Item | null>
+  listItems(filter?: { type?: string, status?: string }): Promise<Item[]>
+  archiveItem(id: string): Promise<void>
+
+  // ─── Content (spec/design/tasks per item) ───
+  getContent(itemId: string): Promise<{ spec?: string, design?: string, tasks?: string }>
+  updateContent(itemId: string, file: 'spec' | 'design' | 'tasks', content: string): Promise<void>
+
+  // ─── Tasks (structured access to tasks.md) ───
+  getTasks(itemId: string): Promise<Task[]>
+  updateTaskStatus(itemId: string, taskOrder: number, done: boolean): Promise<void>
+
+  // ─── Memory (user/project context with provenance) ───
+  addMemory(category: string, key: string, value: string, sourceItemId?: string): Promise<void>
+  getMemory(): Promise<MemoryItem[]>
+  deleteMemory(id: string): Promise<void>
+  getMemoryAsMarkdown(): Promise<string>     // Serializes to principles.md format
+
+  // ─── Chat (scoped per item, never synced to git) ───
+  addMessage(itemId: string | 'global', role: string, content: string): Promise<void>
+  getMessages(itemId: string | 'global', limit?: number): Promise<Message[]>
+
+  // ─── Settings ───
+  getSettings(): Promise<UserSettings>
+  updateSettings(updates: Partial<UserSettings>): Promise<void>
+
+  // ─── Board state (derived from items) ───
+  getBoardState(): Promise<BoardState>
+
+  // ─── Git sync ───
+  configureGit(config: GitConfig): Promise<void>
+  syncToGit(itemId: string): Promise<void>
+  syncAllToGit(): Promise<void>
+}
+```
+
+### Types
+
+```typescript
+interface StoredItem {
+  id: string
+  title: string
+  slug: string                           // kebab-case, auto-generated
+  type: 'task' | 'routine' | 'feature'
+  status: 'new' | 'decomposing' | 'in_progress' |
+          'waiting_approval' | 'done' | 'archived'
+  parentId?: string
+  createdAt: number
+  updatedAt: number
+}
+
+interface MemoryItem {
+  id: string
+  category: string                       // 'people', 'preferences', 'location', 'work', 'general'
+  key: string
+  value: string
+  sourceItemId?: string
+  createdAt: number
+}
+
+interface Message {
+  id: string
+  itemId: string                         // 'global' for top-bar chat
+  role: 'user' | 'assistant'
+  content: string
+  createdAt: number
+}
+
+interface GitConfig {
+  token: string
+  repo: string                           // 'owner/repo'
+  rootDir: string                        // '.specifica/', '.clove/', etc.
+}
+```
+
+### Key Decisions
+
+1. **All methods are async.** Works for SQLite, filesystem, network — any backend.
+2. **No infrastructure leakage.** No Cloudflare types, no SQLite references, no HTTP transport in the interface.
+3. **Git sync is part of the contract.** Implementations decide how — GitHub API, local git CLI, or no-op.
+4. **Chat is in the interface but never synced.** Implementations must store chat but must not include it in git sync.
+
+Possible implementations: Cloudflare DO + SQLite (Cognium), filesystem (CLI tools), SQLite via better-sqlite3 (Electron/desktop), PostgreSQL (self-hosted), in-memory (testing).
+
+---
+
+## Cognium Internal: Cloudflare DO Implementation
+
+The proprietary runtime for specifica.app and Clove. Implements `StorageAdapter`.
+
+### SQLite Schema
+
+```sql
+CREATE TABLE items (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  type TEXT NOT NULL DEFAULT 'task',
+  status TEXT NOT NULL DEFAULT 'new',
+  parent_id TEXT,
+  created_at INTEGER NOT NULL,
+  updated_at INTEGER NOT NULL
+);
+
+CREATE TABLE content (
+  item_id TEXT NOT NULL,
+  file TEXT NOT NULL,                    -- 'spec', 'design', 'tasks'
+  body TEXT NOT NULL DEFAULT '',
+  updated_at INTEGER NOT NULL,
+  PRIMARY KEY (item_id, file)
+);
+
+CREATE TABLE memory (
+  id TEXT PRIMARY KEY,
+  category TEXT NOT NULL,
+  key TEXT NOT NULL,
+  value TEXT NOT NULL,
+  source_item_id TEXT,
+  created_at INTEGER NOT NULL
+);
+
+CREATE TABLE messages (
+  id TEXT PRIMARY KEY,
+  item_id TEXT NOT NULL,
+  role TEXT NOT NULL,
+  content TEXT NOT NULL,
+  created_at INTEGER NOT NULL
+);
+
+CREATE TABLE settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
+
+CREATE TABLE git_config (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL
+);
+```
+
+### Git Sync Behavior
+
+- Syncs content files (spec.md, design.md, tasks.md) to GitHub repo
+- Never syncs chat history, settings, or git config
+- Memory syncs as `principles.md` at the configured root directory
+- Root directory configurable: `.specifica/` for software, `.clove/` for personal
+- Uses GitHub REST API (`PUT /repos/:owner/:repo/contents/:path`)
+- Triggers on meaningful state changes (not every keystroke). Debounced.
+- MVP is unidirectional: SQLite → Git. Bidirectional (git → SQLite via webhook) is v2.
+
+### Implementation Decisions
+
+1. **SQLite in DO, not D1.** Each user gets their own DO with embedded SQLite. Fast, isolated, no shared database bottleneck.
+2. **Generic items, not typed tables.** One `items` table with a `type` column — works for features, todos, routines. Apps add domain logic on top.
+3. **Chat never leaves the DO.** Chat is working process. Files are refined output.
+4. **~400 lines.** Base class + migrations + sync logic.
+
+---
+
+## specifica.app Stack
+
+| Layer | Tech | Why |
+|-------|------|-----|
+| Frontend | Next.js 15 (App Router) | RSC, starter template |
+| UI | shadcn/ui + Tailwind | Ship fast, looks good |
+| Storage | Cognium DO (implements `@specifica/store`) | Shared interface with Clove |
+| Format | `@specifica/format` | Shared parser |
+| Auth | Cloudflare KV | GitHub tokens (encrypted, 8h TTL) |
+| LLM | Claude API (direct) | No Cortex needed — reasoning only |
+| Editor | CodeMirror 6 | Markdown editing + syntax highlight |
+| Git | Octokit | GitHub REST API |
+
+### Auth Flow
+
+```
+Browser → GET /auth/github → 302 to github.com/authorize (scope: repo)
+GitHub  → 302 to /auth/callback?code=xxx
+Worker  → exchange code for token → encrypt → store in KV → upsert user
+Worker  → set HTTP-only session cookie → 302 to /dashboard
+```
+
+### Chat / LLM Flow
+
+System prompt:
+```
+You are a spec editor. Return the COMPLETE updated file, not a diff.
+Preserve existing structure. Only change what the user asks for.
+Follow Specifica format conventions. Don't explain changes unless asked.
+```
+
+Request shape:
+```
+messages: [
+  system: SYSTEM_PROMPT,
+  user: "Current file ({path}):\n```markdown\n{content}\n```",
+  ...chatHistory (last 20 msgs, 4000 token budget),
+  user: userMessage
+]
+model: claude-sonnet-4-20250514
+stream: true
+```
+
+### Commit Flow (GitHub Trees API)
+
+Atomic multi-file commit in 5 steps:
+
+1. `GET /git/ref/heads/{branch}` → current commit SHA
+2. `GET /git/commits/{sha}` → current tree SHA
+3. `POST /git/trees` with base_tree + changed files → new tree SHA
+4. `POST /git/commits` with new tree + parent → new commit SHA
+5. `PATCH /git/refs/heads/{branch}` → branch updated
+
+If step 5 fails (fast-forward conflict), nothing is partially committed.
+
+---
+
+## Product Mapping
+
+### How specifica.app uses the packages
+
+```
+@specifica/format   — serializes feature specs to/from markdown
+@specifica/store    — StorageAdapter interface for all state management
++ Cognium DO Engine — implements StorageAdapter (Cloudflare DO + SQLite)
++ Direct LLM call   — Claude API, no Cortex
++ Feature logic     — spec/design/tasks, PR creation
++ Three-pane UI     — sidebar, content, chat
+```
+
+### How Clove uses the same packages
+
+```
+@specifica/format   — serializes todo content to/from markdown
+@specifica/store    — StorageAdapter interface for all state management
++ Cognium DO Engine — same implementation, different root dir (.clove/)
++ Cortex proxy      — skill discovery, execution, approval flow
++ Todo domain logic — task vs routine, lifecycle rules
++ Board UI          — consumer-facing app
+```
+
+---
+
+## Risks
+
+| Risk | Impact | Mitigation |
+|------|--------|------------|
+| `repo` scope is broad | Users hesitate to auth | Document clearly; consider `public_repo` toggle |
+| LLM rewrites unasked sections | User frustration | System prompt + diff view |
+| GitHub API rate limit (5000/hr) | Blocks usage | Fetch tree once per page load |
+| Pending changes lost on refresh | Data loss | Acceptable for MVP; DO persistence later |
+| Package interface changes | Breaks both products | Version packages, coordinate releases |
+| Unidirectional sync causes drift | Git and DO diverge | Clear "Git is archive" mental model for MVP |
+
+## Key Decisions
+
+1. **Two layers.** SQLite is the working layer. Git is the persistence layer. No single source of truth problem — they serve different purposes.
+2. **Interface vs implementation.** `@specifica/store` is the open interface. Cognium's DO engine is one implementation. Anyone can build another — filesystem, PostgreSQL, in-memory.
+3. **Single branch only.** All reads/commits target default branch.
+4. **No WebSockets.** Chat streams via SSE.
+5. **Whole-file LLM output.** Simpler than diffs, more tokens but reliable.
+6. **Chat scoped to one file.** Cross-file chat is v2.
+7. **Board pattern.** Both products use a board + scoped chat UI. Different domain logic, same layout.
