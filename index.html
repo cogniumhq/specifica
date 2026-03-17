@@ -15,11 +15,116 @@
 <meta name="twitter:title" content="Specifica — A markdown format that makes AI collaboration natural">
 <meta name="twitter:description" content="Three markdown files per item — spec, design, tasks. Built for AI collaboration.">
 <meta name="twitter:image" content="https://specifica.org/og-image.png">
+<meta name="keywords" content="markdown format, AI collaboration, specification, software specs, git workflow, documentation format, spec.md, design.md, tasks.md, project planning, AI-assisted development, structured content, GitHub markdown, software documentation, technical specification, AI workflow, development tools, project management">
+<meta name="author" content="Cognium">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='36' height='36' rx='8' fill='%231a7a56'/%3E%3Cpath d='M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z' stroke='white' stroke-width='1.5' fill='none'/%3E%3Cpath d='M20 8v5h5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M14 20l3 3 5-6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='36' height='36' rx='8' fill='%231a7a56'/%3E%3Cpath d='M11 8h9l5 5v15a1 1 0 0 1-1 1H11a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z' stroke='white' stroke-width='1.5' fill='none'/%3E%3Cpath d='M20 8v5h5' stroke='white' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M14 20l3 3 5-6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Specifica",
+  "description": "A markdown format that makes AI collaboration natural. Three files per item in your repo — spec, design, tasks.",
+  "url": "https://specifica.org",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Cognium",
+    "url": "https://cogniumhq.com"
+  },
+  "sameAs": [
+    "https://github.com/cogniumhq/specifica",
+    "https://www.npmjs.com/package/@specifica/format"
+  ],
+  "featureList": [
+    "Three-file markdown structure (spec.md, design.md, tasks.md)",
+    "AI collaboration optimized",
+    "GitHub-Flavored Markdown compatible",
+    "Tool-agnostic format",
+    "Git-native workflow"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Specifica",
+  "url": "https://specifica.org",
+  "description": "A markdown format that makes AI collaboration natural",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cognium"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Specifica - A markdown format that makes AI collaboration natural",
+  "description": "Documentation for Specifica, an open markdown specification format using three files (spec.md, design.md, tasks.md) per item in Git repositories.",
+  "url": "https://specifica.org",
+  "datePublished": "2024-01-01",
+  "dateModified": "2025-01-01",
+  "author": {
+    "@type": "Organization",
+    "name": "Cognium"
+  },
+  "keywords": ["markdown", "AI collaboration", "specification", "git workflow", "documentation format", "software development"],
+  "articleSection": ["Format Specification", "Use Cases", "Conventions", "Principles"],
+  "inLanguage": "en-US"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://specifica.org"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Format",
+      "item": "https://specifica.org#format"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Use Cases",
+      "item": "https://specifica.org#use-cases"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Structure",
+      "item": "https://specifica.org#structure"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Packages",
+      "item": "https://specifica.org#packages"
+    }
+  ]
+}
+</script>
 <style>
   :root {
     --bg: #fafaf9; --bg-subtle: #f3f3f1; --bg-elevated: #ffffff;
@@ -58,7 +163,7 @@
 
   /* HERO */
   .hero{padding:120px 40px 56px;max-width:1080px;margin:0 auto}
-  .hero-top{max-width:560px;margin-bottom:40px}
+  .hero-top{max-width:100%;margin-bottom:40px}
   .hero h1{font-size:clamp(36px,5vw,52px);font-weight:700;letter-spacing:-2px;line-height:1.05;margin-bottom:16px}
   .hero-sub{font-size:17px;color:var(--text-secondary);line-height:1.7;margin-bottom:24px}
   .hero-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-tertiary);flex-wrap:wrap}
@@ -70,13 +175,13 @@
   .hero-trees{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .hero-tree{background:var(--dark);border-radius:12px;padding:28px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
   .hero-tree::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(74,222,128,0.3),transparent)}
-  .hero-tree-label{font-family:var(--font);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#71717a;margin-bottom:14px;display:block}
+  .hero-tree-label{font-family:var(--font);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#a1a1aa;margin-bottom:14px;display:block}
   .hero-tree pre{font-family:var(--mono);font-size:13px;line-height:2;margin:0;white-space:pre}
-  .ht-dir{color:#f4f4f5;font-weight:500}.ht-conn{color:#3f3f46}.ht-file{color:#a1a1aa}.ht-feature{color:#4ade80}.ht-note{color:#52525b;font-size:11px}
+  .ht-dir{color:#f4f4f5;font-weight:500}.ht-conn{color:#71717a}.ht-file{color:#d4d4d8}.ht-feature{color:#4ade80}.ht-note{color:#b4b4bc;font-size:11px}
 
   /* THREE FILES */
   .three-files{padding:64px 0}
-  .three-files-header{margin-bottom:36px;max-width:480px}
+  .three-files-header{margin-bottom:36px;max-width:100%}
   .three-files-header h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
   .three-files-header p{font-size:15px;color:var(--text-secondary);line-height:1.7}
   .file-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
@@ -90,12 +195,12 @@
   .file-card p{font-size:13px;color:var(--text-secondary);line-height:1.6}
   .file-card-preview{margin-top:20px;padding:18px 20px;background:var(--dark);font-family:var(--mono);font-size:11px;line-height:1.85;overflow:hidden;min-height:160px}
   .file-card-preview pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:inherit;line-height:inherit}
-  .fp-heading{color:#4ade80;font-weight:500}.fp-text{color:#b4b4bc}.fp-check{color:#636366}.fp-bold{color:#d4d4d8;font-weight:500}
+  .fp-heading{color:#4ade80;font-weight:500}.fp-text{color:#d4d4d8}.fp-check{color:#d4d4d8}.fp-bold{color:#f4f4f5;font-weight:500}
 
   /* USE CASES */
   .usecases{padding:64px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
   .usecases h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:10px}
-  .usecases>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:480px;margin-bottom:36px}
+  .usecases>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:100%;margin-bottom:36px}
   .usecase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .usecase-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s var(--ease)}
   .usecase-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow)}
@@ -108,13 +213,13 @@
   .usecase-file-tag.dim{background:var(--bg-subtle);color:var(--text-tertiary)}
   .usecase-card-tree{padding:14px 20px;background:var(--dark);font-family:var(--mono);font-size:11px;line-height:1.85}
   .usecase-card-tree pre{margin:0;white-space:pre;font-family:inherit;font-size:inherit;line-height:inherit}
-  .uct-dir{color:#4ade80;font-weight:500}.uct-conn{color:#3f3f46}.uct-file{color:#b4b4bc}.uct-dim{color:#636366}
+  .uct-dir{color:#4ade80;font-weight:500}.uct-conn{color:#71717a}.uct-file{color:#d4d4d8}.uct-dim{color:#b4b4bc}
 
   /* STRUCTURE */
   .structure-section{padding:64px 0;background:var(--dark);color:var(--text-inverse)}
   .structure-section .section-kicker{color:rgba(74,222,128,0.7)}
   .structure-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:10px;color:#f4f4f5}
-  .structure-section>.wrap>p{font-size:15px;color:#b4b4bc;line-height:1.7;max-width:520px;margin-bottom:36px}
+  .structure-section>.wrap>p{font-size:15px;color:#d4d4d8;line-height:1.7;max-width:100%;margin-bottom:36px}
   .structure-section>.wrap>p code{background:rgba(74,222,128,0.12);color:#4ade80}
   .tree-visual{display:grid;grid-template-columns:360px 1fr;gap:40px;align-items:start}
   .tree-diagram{background:var(--dark-elevated);border:1px solid var(--dark-border);border-radius:12px;padding:28px}
@@ -124,41 +229,41 @@
   .tree-anno:hover{border-left-color:#4ade80}
   .tree-anno h4{font-size:13px;font-weight:700;color:#f4f4f5;margin-bottom:3px;display:flex;align-items:center;gap:8px}
   .tree-anno h4 code{background:rgba(74,222,128,0.12);color:#4ade80;font-size:11px;padding:2px 7px;border-radius:3px}
-  .tree-anno p{font-size:13px;color:#a1a1aa;line-height:1.6}
+  .tree-anno p{font-size:13px;color:#d4d4d8;line-height:1.6}
 
   /* CONVENTIONS */
   .conventions{padding:64px 0}
   .conventions h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:10px}
-  .conventions>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:460px;margin-bottom:36px}
+  .conventions>.wrap>p{font-size:15px;color:var(--text-secondary);line-height:1.7;max-width:100%;margin-bottom:36px}
   .conv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   .conv-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .3s var(--ease)}
   .conv-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow)}
   .conv-card h3{font-size:15px;font-weight:700;letter-spacing:-0.2px;margin-bottom:10px}
   .conv-card p{font-size:13px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px}
-  .conv-example{background:var(--dark);border-radius:var(--radius);padding:14px 18px;font-family:var(--mono);font-size:11px;line-height:1.9;overflow-x:auto}
+  .conv-example{background:var(--dark);border-radius:var(--radius);padding:14px 18px;font-family:var(--mono);font-size:11px;line-height:1.9;overflow-x:auto;color:#d4d4d8}
   .conv-example pre{margin:0;white-space:pre-wrap;font-family:inherit;font-size:inherit;line-height:inherit}
-  .conv-example .g{color:#4ade80}.conv-example .r{color:#ef4444;opacity:0.6;text-decoration:line-through}.conv-example .d{color:#636366}.conv-example .w{color:#f4f4f5;font-weight:500}.conv-example .c{color:#636366}
+  .conv-example .g{color:#4ade80}.conv-example .r{color:#fca5a5;text-decoration:line-through}.conv-example .d{color:#d4d4d8}.conv-example .w{color:#f4f4f5;font-weight:500}.conv-example .c{color:#d4d4d8}
 
   /* PACKAGES */
   .packages-section{padding:64px 0;background:var(--dark);color:var(--text-inverse)}
   .packages-section .section-kicker{color:rgba(74,222,128,0.7)}
   .packages-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.15;margin-bottom:10px;color:#f4f4f5}
-  .packages-section>.wrap>p{font-size:15px;color:#b4b4bc;line-height:1.7;max-width:480px;margin-bottom:36px}
+  .packages-section>.wrap>p{font-size:15px;color:#d4d4d8;line-height:1.7;max-width:100%;margin-bottom:36px}
   .pkg-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .pkg-card{background:var(--dark-elevated);border:1px solid var(--dark-border);border-radius:12px;padding:28px;transition:border-color .3s var(--ease)}
   .pkg-card:hover{border-color:rgba(74,222,128,0.3)}
   .pkg-card-name{font-family:var(--mono);font-size:14px;font-weight:500;color:#4ade80;margin-bottom:4px}
   .pkg-card-name a{color:#4ade80;text-decoration:none}
   .pkg-card-name a:hover{text-decoration:underline}
-  .pkg-card-desc{font-size:13px;color:#a1a1aa;line-height:1.55;margin-bottom:16px}
+  .pkg-card-desc{font-size:13px;color:#d4d4d8;line-height:1.55;margin-bottom:16px}
   .pkg-card-tag{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:16px}
   .pkg-card-tag.open{background:rgba(74,222,128,0.12);color:#4ade80}
-  .pkg-card pre{font-family:var(--mono);font-size:11px;line-height:1.85;color:#a1a1aa;margin:0;white-space:pre;background:rgba(0,0,0,0.3);border-radius:var(--radius-sm);padding:14px 16px;overflow-x:auto}
-  .pkg-card pre .fn{color:#93c5fd}.pkg-card pre .type{color:#fbbf24}.pkg-card pre .comment{color:#525252}
+  .pkg-card pre{font-family:var(--mono);font-size:11px;line-height:1.85;color:#d4d4d8;margin:0;white-space:pre;background:rgba(0,0,0,0.3);border-radius:var(--radius-sm);padding:14px 16px;overflow-x:auto}
+  .pkg-card pre .fn{color:#93c5fd}.pkg-card pre .type{color:#fbbf24}.pkg-card pre .comment{color:#b4b4bc}
 
   /* PRINCIPLES */
   .principles-section{padding:64px 0;background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-  .principles-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:36px;max-width:480px}
+  .principles-section h2{font-size:clamp(28px,3.5vw,36px);font-weight:700;letter-spacing:-1.2px;line-height:1.1;margin-bottom:36px;max-width:100%}
   .principles-list{display:flex;flex-direction:column}
   .principle-row{display:grid;grid-template-columns:48px 180px 1fr;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--border)}
   .principle-row:last-child{border-bottom:none}
@@ -179,7 +284,7 @@
   .cta-terminal-bar{height:34px;display:flex;align-items:center;padding:0 14px;background:var(--dark-elevated);gap:6px}
   .td{width:8px;height:8px;border-radius:50%}.td-r{background:#ff5f57}.td-y{background:#febc2e}.td-g{background:#28c840}
   .cta-terminal pre{margin:0;padding:18px 22px;font-family:var(--mono);font-size:12px;line-height:2;white-space:pre}
-  .cta-terminal .p{color:#4ade80}.cta-terminal .cmd{color:#f4f4f5}.cta-terminal .m{color:#636366}
+  .cta-terminal .p{color:#4ade80}.cta-terminal .cmd{color:#f4f4f5}.cta-terminal .m{color:#a1a1aa}
 
   /* FOOTER */
   .footer{padding:28px 0;border-top:1px solid var(--border)}
@@ -234,8 +339,8 @@
 
 <header class="hero">
   <div class="hero-top">
-    <h1>Three files. Any item. Your repo.</h1>
-    <p class="hero-sub">A markdown format that makes AI collaboration natural. Describe what needs to happen, how it works, and what to do next — as files in a directory. Software specs, personal plans, or team workflows.</p>
+    <h1>A markdown format that makes AI collaboration natural</h1>
+    <p class="hero-sub">Three files per item in your repo. Describe what needs to happen, how it works, and what to do next — as files in a directory. Software specs, personal plans, or team workflows.</p>
     <div class="hero-meta">
       <span class="hero-meta-dot"></span>
       <span>v1.0-rc</span>
