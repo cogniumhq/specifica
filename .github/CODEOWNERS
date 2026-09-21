@@ -1,0 +1,36 @@
+# Code owners for specifica.
+#
+# Owners are requested automatically on any PR touching a matching path.
+# Last match wins, so the specific rules below override the catch-all.
+#
+# THIS FILE IS INERT UNTIL TWO THINGS ARE DONE — neither reports an error
+# when missing:
+#
+#   1. @cogniumhq/coreteam must have WRITE access to this repository.
+#      GitHub silently ignores CODEOWNERS entries naming a team without
+#      write access. At time of writing `GET /repos/cogniumhq/specifica/teams`
+#      returns [] — no team has been granted access to this repo.
+#   2. `main` is NOT a protected branch here (`protected: false`), so changes
+#      can be pushed straight to it without a pull request at all. Code owners
+#      are only consulted on PRs; branch protection with "Require review from
+#      Code Owners" has to be enabled for this file to gate anything.
+#
+# See cogniumhq/cognium-dev#442.
+
+# Default owner for everything not matched below.
+*                                   @cogniumhq/coreteam
+
+# ---------------------------------------------------------------------------
+# Supply chain. @specifica/format and @specifica/store are published to npm
+# (private: false), so a change to a manifest or the lockfile can introduce a
+# malicious dependency into anything that installs them.
+# ---------------------------------------------------------------------------
+
+/package.json                       @cogniumhq/coreteam
+/package-lock.json                  @cogniumhq/coreteam
+/packages/*/package.json            @cogniumhq/coreteam
+
+# This repo has no workflows today. The rule is deliberate rather than dead:
+# what it guards is the *creation* of one, which is the point at which CI
+# gains the ability to execute arbitrary code and publish packages.
+/.github/                           @cogniumhq/coreteam
