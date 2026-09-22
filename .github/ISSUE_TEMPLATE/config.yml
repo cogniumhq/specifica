@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/cogniumhq/specifica/blob/main/SECURITY.md
+    about: Use the private reporting instructions; do not disclose vulnerabilities in public issues.
+  - name: Website issue (specifica.org)
+    url: https://github.com/cogniumhq/specifica-web/issues
+    about: The reference site lives in specifica-web.
+  - name: Editor issue (specifica.app)
+    url: https://github.com/cogniumhq/specifica-app/issues
+    about: The web editor lives in specifica-app.
