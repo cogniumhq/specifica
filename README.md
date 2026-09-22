@@ -97,9 +97,22 @@ documents the open spec format. Other open work is at
 [github.com/cogniumhq](https://github.com/cogniumhq). Contact:
 [hello@cognium.net](mailto:hello@cognium.net).
 
+## Contributing
+
+External contributions are welcome; no separate CLA form is required. See
+[CONTRIBUTING.md](CONTRIBUTING.md) and open an issue before starting
+non-trivial work — particularly for changes to the format itself, which other
+tools implement.
+
+This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md). To report
+a vulnerability privately, see the [security policy](SECURITY.md).
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+Both packages are published to npm under the same terms. Publishing is manual;
+there are no release workflows in this repository.
 
 ## Links
 
