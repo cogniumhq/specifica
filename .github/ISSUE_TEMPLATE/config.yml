@@ -6,6 +6,6 @@ contact_links:
   - name: Website issue (specifica.org)
     url: https://github.com/cogniumhq/specifica-web/issues
     about: The reference site lives in specifica-web.
-  - name: Editor issue (specifica.app)
+  - name: Playground issue (playground.specifica.org)
     url: https://github.com/cogniumhq/specifica-app/issues
-    about: The web editor lives in specifica-app.
+    about: The playground lives in specifica-app.

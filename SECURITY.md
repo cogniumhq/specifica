@@ -5,7 +5,7 @@ Labs Inc: `@specifica/format` and `@specifica/store`.
 
 The [specifica.org](https://specifica.org) site lives in
 [cogniumhq/specifica-web](https://github.com/cogniumhq/specifica-web) and the
-[specifica.app](https://specifica.app) editor in
+Specifica playground ([playground.specifica.org](https://playground.specifica.org)) in
 [cogniumhq/specifica-app](https://github.com/cogniumhq/specifica-app);
 vulnerabilities in either should be reported the same way, to the address
 below.

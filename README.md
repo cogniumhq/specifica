@@ -32,7 +32,7 @@ All files are optional. All files are standard GitHub-Flavored Markdown.
 |---|---|
 | **specifica** (this repo) | the `.specifica/` format specification, `@specifica/format`, `@specifica/store` |
 | [specifica-web](https://github.com/cogniumhq/specifica-web) | the [specifica.org](https://specifica.org) reference site |
-| [specifica-app](https://github.com/cogniumhq/specifica-app) | the [specifica.app](https://specifica.app) web editor |
+| [specifica-app](https://github.com/cogniumhq/specifica-app) | the Specifica playground at [playground.specifica.org](https://playground.specifica.org) |
 
 ## Packages
 
@@ -117,7 +117,7 @@ there are no release workflows in this repository.
 ## Links
 
 - [specifica.org](https://specifica.org) — format documentation
-- [specifica.app](https://specifica.app) — web application (coming soon)
+- [playground.specifica.org](https://playground.specifica.org) — try Specifica in the browser, no sign-in (coming soon)
 
 ---
 

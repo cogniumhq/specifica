@@ -21,7 +21,7 @@ This repository is one of three. Please open your change against the right one:
 |---|---|
 | **specifica** (this repo) | the `.specifica/` format specification, `@specifica/format`, `@specifica/store` |
 | [specifica-web](https://github.com/cogniumhq/specifica-web) | the [specifica.org](https://specifica.org) site |
-| [specifica-app](https://github.com/cogniumhq/specifica-app) | the [specifica.app](https://specifica.app) editor |
+| [specifica-app](https://github.com/cogniumhq/specifica-app) | the Specifica playground ([playground.specifica.org](https://playground.specifica.org)) |
 
 A PR that edits the website will be closed with a pointer to `specifica-web` —
 not because it is unwelcome, but because it cannot deploy from here.
