@@ -9,6 +9,11 @@
 contains the format specification and its two TypeScript packages; the
 reference site and the web editor live in their own repositories.
 
+**[Try the Specifica Playground](https://playground.specifica.org/)** — start
+from a working example, change the spec, then copy it to your coding agent or
+download the `.specifica/` folder. It is free, runs in the browser, and needs
+no account.
+
 ## What is Specifica?
 
 A `.specifica/` directory convention for writing software specs as markdown in
@@ -28,11 +33,11 @@ All files are optional. All files are standard GitHub-Flavored Markdown.
 
 ## How the pieces fit
 
-| Repo | Contents |
+| Surface | Contents |
 |---|---|
 | **specifica** (this repo) | the `.specifica/` format specification, `@specifica/format`, `@specifica/store` |
-| [specifica-web](https://github.com/cogniumhq/specifica-web) | the [specifica.org](https://specifica.org) reference site |
-| [specifica-app](https://github.com/cogniumhq/specifica-app) | the [specifica.app](https://specifica.app) web editor |
+| [specifica.org](https://specifica.org) | the public format reference and examples |
+| [Specifica Playground](https://playground.specifica.org/) | the live browser editor: write, review, export and share a spec |
 
 ## Packages
 
@@ -116,8 +121,9 @@ there are no release workflows in this repository.
 
 ## Links
 
-- [specifica.org](https://specifica.org) — format documentation
-- [specifica.app](https://specifica.app) — web application (coming soon)
+- [Try the Playground](https://playground.specifica.org/) — write and export a spec in the browser
+- [Format reference](https://specifica.org/format/) — structure, files and conventions
+- [specifica.org](https://specifica.org) — overview and examples
 
 ---
 
