@@ -13,11 +13,11 @@ markdown in any Git repo: three files per feature — `spec.md` (what),
 without any tool.
 
 **Philosophy**: make specification the natural first step of building software,
-not a chore teams skip. The format gives structure; the app removes friction.
+not a chore teams skip. The format gives structure; the playground removes friction.
 
 **Key distinction**: `specifica.org` presents an open standard anyone can
-adopt. `specifica.app` is one tool that implements it. The format must always
-be useful without the app.
+adopt. The playground (`playground.specifica.org`) is one tool that implements
+it. The format must always be useful without the playground.
 
 ## How the pieces fit
 
@@ -27,7 +27,7 @@ The project is three repositories. Put changes where the thing lives:
 |---|---|
 | **specifica** (this repo) | `.specifica/` format spec, `@specifica/format`, `@specifica/store` |
 | `cogniumhq/specifica-web` | the specifica.org reference site (`index.html`, Cloudflare Pages) |
-| `cogniumhq/specifica-app` | the specifica.app web editor |
+| `cogniumhq/specifica-app` | the Specifica playground (`playground.specifica.org`) |
 
 The site used to live here. It was split out so that a copy edit to the website
 and a release of the npm packages are no longer the same blast radius — see

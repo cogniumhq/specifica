@@ -47,7 +47,7 @@ A single-page static website that documents the Specifica format. Visitors shoul
 ### Links and navigation
 
 - [ ] Link to GitHub repository
-- [ ] Link to specifica.app (web editor)
+- [ ] Link to playground.specifica.org (try it, no sign-in)
 - [ ] Internal anchor links to sections
 - [ ] Mobile-friendly navigation
 

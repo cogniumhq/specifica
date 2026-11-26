@@ -4,13 +4,13 @@
 
 Specifica is a structured content format for Git and the shared platform that powers it. Three markdown files per item — spec.md (what), design.md (how), tasks.md (work) — in a configurable root directory. All files optional. Works for software specs, team workflows, and personal planning.
 
-The project has three layers: an open format specification (specifica.org), two shared packages (`@specifica/format` and `@specifica/store`), and a web editor (specifica.app). Multiple Cognium products build on the same format and packages.
+The project has three layers: an open format specification (specifica.org), two shared packages (`@specifica/format` and `@specifica/store`), and a playground (playground.specifica.org) where anyone can try the format without signing in. Multiple Cognium products build on the same format and packages.
 
 ## Success Criteria
 
 - `@specifica/format`: parse tasks.md → Task[], serialize back, validate directory structure. Published to npm. ~200 lines.
 - `@specifica/store`: `StorageAdapter` interface with types for items, content, memory, chat, git sync. Published to npm. Implementation-agnostic.
-- specifica.app: Sign in → connect repo → write specs via chat → commit to GitHub in under 20 minutes.
+- playground.specifica.org: no sign-in, the visitor's own model key (OpenRouter or any OpenAI-compatible endpoint) → write specs by chat or by direct edit → export the `.specifica/` folder to their own coding agent in under 5 minutes. Replaces the earlier specifica.app plan (sign-in, connect repo, commit to GitHub), dropped 2026-10-22.
 - specifica.org: Format reference site live at specifica.pages.dev.
 
 ## Appetite
@@ -75,7 +75,7 @@ Storage adapter interface. Open source, published to npm. Defines the contract f
 
 The interface must not leak implementation details (no Cloudflare DO lifecycle, no SQLite references, no specific sync transport). Anyone can implement it: filesystem, SQLite, PostgreSQL, in-memory.
 
-**Cognium implements this internally** as a Cloudflare DO + SQLite engine with GitHub REST API sync. That implementation is not published — it's the proprietary runtime for specifica.app and Clove.
+**Cognium implements this internally** as a Cloudflare DO + SQLite engine with GitHub REST API sync. That implementation is not published — it's the proprietary runtime for Clove. The playground needs no server-side store.
 
 ---
 

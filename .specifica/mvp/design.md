@@ -6,7 +6,7 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                    Cognium Products                          │
 │                                                             │
-│   specifica.app          Clove (Bombastic)     Future apps  │
+│   playground             Clove (Bombastic)     Future apps  │
 │   ┌─────────────┐       ┌─────────────┐                    │
 │   │ Next.js 15   │       │ Board UI     │                   │
 │   │ Claude API   │       │ Cortex proxy │                   │
@@ -191,7 +191,7 @@ Possible implementations: Cloudflare DO + SQLite (Cognium), filesystem (CLI tool
 
 ## Cognium Internal: Cloudflare DO Implementation
 
-The proprietary runtime for specifica.app and Clove. Implements `StorageAdapter`.
+The proprietary runtime for Clove (and, before 2026-10-22, the planned specifica.app). Implements `StorageAdapter`.
 
 ### SQLite Schema
 
@@ -262,7 +262,9 @@ CREATE TABLE git_config (
 
 ---
 
-## specifica.app Stack
+## specifica.app Stack (superseded)
+
+> **Dropped 2026-10-22.** There is no specifica.app. Trials run at **playground.specifica.org**: browser-only, no sign-in, the visitor's own model key, export of the `.specifica/` folder. Its plan replaces this stack; the section stays as history.
 
 | Layer | Tech | Why |
 |-------|------|-----|
@@ -321,7 +323,9 @@ If step 5 fails (fast-forward conflict), nothing is partially committed.
 
 ## Product Mapping
 
-### How specifica.app uses the packages
+### How the playground uses the packages
+
+`@specifica/format` parses and serializes the visitor's files in the browser; nothing is stored server-side. The listing below is the earlier specifica.app plan, kept as history.
 
 ```
 @specifica/format   — serializes feature specs to/from markdown
