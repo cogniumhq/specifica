@@ -20,6 +20,9 @@
   },
   "keywords": [
     "specifica",
+    "spec-driven-development",
+    "ai-coding-agent",
+    "software-specification",
     "storage",
     "adapter",
     "interface",
@@ -27,6 +30,7 @@
   ],
   "author": "Cognium",
   "license": "MIT",
+  "homepage": "https://specifica.org/format/",
   "repository": {
     "type": "git",
     "url": "https://github.com/cogniumhq/specifica",

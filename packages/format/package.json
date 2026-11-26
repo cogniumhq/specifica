@@ -23,12 +23,17 @@
   "keywords": [
     "specifica",
     "specification",
+    "spec-driven-development",
+    "ai-coding-agent",
+    "software-specification",
+    "requirements",
     "markdown",
     "parser",
     "format"
   ],
   "author": "Cognium",
   "license": "MIT",
+  "homepage": "https://specifica.org/format/",
   "repository": {
     "type": "git",
     "url": "https://github.com/cogniumhq/specifica",
